@@ -187,10 +187,24 @@ export default function CreateListing() {
                                     <SelectValue placeholder="Select Category" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    {["Real Estate", "Healthcare", "Finance & Banking", "Retail & E-commerce", "Hospitality & Tourism", "Manufacturing & Industrial", "Energy & Utilities", "Transportation & Logistics", "Media & Entertainment", "Agriculture & Food", "Jewellery"].map((cat) => (
-                                        <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                                    {[
+                                        "Hotels & Resorts",
+                                        "Restaurants & Cafes",
+                                        "Travel & Tourism Services",
+                                        "Real Estate & Properties",
+                                        "Healthcare Services",
+                                        "Education & Coaching",
+                                        "Salons, Spas & Wellness",
+                                        "Grocery & Supermarkets",
+                                        "Fashion & Clothing Stores",
+                                        "Electronics & Mobile Stores"
+                                    ].map((cat) => (
+                                        <SelectItem key={cat} value={cat}>
+                                            {cat}
+                                        </SelectItem>
                                     ))}
                                 </SelectContent>
+
                             </Select>
                             <Input
                                 type="text"
