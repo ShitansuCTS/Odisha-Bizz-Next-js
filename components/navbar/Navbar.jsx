@@ -155,14 +155,14 @@ export default function Navbar() {
                                 </>
                             )}
 
-                            {!isAuthenticated && (
+                            {/* {!isAuthenticated && (
                                 <Button
                                     onClick={() => alert("Go to login")}
                                     className="bg-[#012a7a] hover:bg-[#012a7a] text-white rounded-full px-6 py-2 shadow-md flex items-center gap-2"
                                 >
                                     <LogIn className="w-5 h-5" /> Sign In
                                 </Button>
-                            )}
+                            )} */}
                         </div>
                     </nav>
 
