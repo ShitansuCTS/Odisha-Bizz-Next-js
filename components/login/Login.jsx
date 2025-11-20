@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,8 @@ import toast from "react-hot-toast";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import useAuthStore from "@/store/authStore";
+
 
 export default function Login() {
   //   const API = process.env.NEXT_PUBLIC_BACKEND_API_URL;
@@ -19,6 +21,14 @@ export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const { isAuthenticated } = useAuthStore();
+
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/admin/dashboard");
+    }
+  })
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
