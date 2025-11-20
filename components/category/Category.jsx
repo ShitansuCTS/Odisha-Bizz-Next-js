@@ -52,7 +52,7 @@ const services = [
         title: "Transportation & Logistics",
         description: "Delivering efficiency across every mile.",
         image: "/images/Transportation_Logistics.webp",
-        link: "/transportation",
+        slug: "transportation-and-logistics",
     },
     {
         title: "Media & Entertainment",
@@ -148,7 +148,7 @@ export default function Category() {
 
                                     <div className="mt-6 flex justify-end">
                                         <Link
-                                            href={`/category?category=${service.title}`}
+                                           href={`/category/${service.slug}`}
                                             className="flex items-center gap-2 bg-[#249732] hover:bg-green-600 text-white rounded-full px-5 py-2 shadow-md transition-all duration-300"
                                         >
                                             More <ArrowRight className="w-4 h-4" />
