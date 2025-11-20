@@ -21,14 +21,18 @@ export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, checkAuth } = useAuthStore();
 
 
   useEffect(() => {
-    if (isAuthenticated) {
-      router.push("/admin/dashboard");
-    }
-  })
+    const checkToken = async () => {
+      await checkAuth(); // updates the store
+      if (useAuthStore.getState().isAuthenticated) {
+        router.replace("/admin/dashboard");
+      }
+    };
+    checkToken();
+  }, [router, checkAuth]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -46,24 +50,28 @@ export default function Login() {
     try {
       const response = await axios.post("/api/login", form, { withCredentials: true });
 
-      // Login success
       if (response.status === 200) {
         toast.success("Login successful!");
         router.push("/admin/dashboard");
+        // Update the store based on token in cookie
+        await checkAuth();
+
+        // Redirect after store updates
+        if (useAuthStore.getState().isAuthenticated) {
+          router.replace("/admin/dashboard");
+        }
       }
     } catch (error) {
-      // Catch Axios errors and prevent them from breaking the page
       if (axios.isAxiosError(error)) {
         const status = error.response?.status;
         if (status === 401) toast.error("Invalid email or password");
         else if (status === 400) toast.error("All fields are required");
         else toast.error("Login failed. Please try again.");
       } else {
-        // Catch any other unexpected errors
         toast.error("Something went wrong");
       }
     } finally {
-      setLoading(false); // ensure loader is removed
+      setLoading(false);
     }
   };
 

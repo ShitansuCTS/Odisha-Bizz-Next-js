@@ -18,7 +18,7 @@ export default function LogoutButton() {
 
             if (res.ok) {
                 toast.success("Logged out successfully");
-                router.push("/login"); // redirect to login page
+                router.push("/admin/login"); // redirect to login page
             } else {
                 toast.error("Failed to logout");
             }
