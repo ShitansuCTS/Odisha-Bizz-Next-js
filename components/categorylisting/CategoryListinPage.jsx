@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 
 import {
     Phone,
@@ -123,10 +124,12 @@ export default function CategoryListingPage({ categorySlug }) {
                 <section className="flex-1 flex flex-col gap-8">
                     {mainListings.length === 0 ? (
                         <div className="flex flex-col items-center justify-center py-16 text-center bg-white rounded-lg border border-gray-200">
-                            <img
+                            <Image
                                 src="/images/data-not-found.png"
                                 alt="No products"
                                 loading="lazy"
+                                width={160}
+                                height={160}
                                 className="w-40 h-40 mb-4 opacity-80"
                             />
                             <h3 className="text-lg font-semibold text-gray-800">
@@ -147,7 +150,9 @@ export default function CategoryListingPage({ categorySlug }) {
                                     {/* Image */}
                                     <div className="w-full md:w-44 h-40 shrink-0 overflow-hidden rounded-lg bg-gray-100">
                                         {item.imageUrl ? (
-                                            <img
+                                            <Image
+                                                height={40}
+                                                width={100}
                                                 src={item.imageUrl}
                                                 alt={item.title}
                                                 className="w-full h-full object-cover"

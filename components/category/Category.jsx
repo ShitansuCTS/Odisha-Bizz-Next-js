@@ -6,84 +6,103 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 
 const services = [
-    {
-        title: "Real Estate",
-        description: "Building dreams, one property  at a property   time.",
-        image: "/images/real-estate.jpg",
-        link: "/real-estate",
-    },
-    {
-        title: "Healthcare",
-        description: "Caring for your health, every step of the way.",
-        image: "/images/healthcare.jpg",
-        link: "/healthcare",
-    },
-    {
-        title: "Finance & Banking",
-        description: "Smart solutions for your financial growth.",
-        image: "/images/Finance_Banking.webp",
-        link: "/finance",
-    },
-    {
-        title: "Retail & E-commerce",
-        description: "Bringing the best products to your doorstep.",
-        image: "/images/Retail_E-commerce.jpg",
-        link: "/retail",
-    },
-    {
-        title: "Hospitality & Tourism",
-        description: "Creating memorable experiences around the world.",
-        image: "/images/Hospitality_Tourism.jpg",
-        link: "/tourism",
-    },
-    {
-        title: "Manufacturing & Industrial",
-        description: "Powering progress through innovation and efficiency.",
-        image: "/images/manufacturing.webp",
-        link: "/manufacturing",
-    },
-    {
-        title: "Energy & Utilities",
-        description: "Sustaining the future with clean and smart energy.",
-        image: "/images/Energy_Utilities.avif",
-        link: "/energy",
-    },
-    {
-        title: "Transportation & Logistics",
-        description: "Delivering efficiency across every mile.",
-        image: "/images/Transportation_Logistics.webp",
-        slug: "transportation-and-logistics",
-    },
-    {
-        title: "Media & Entertainment",
-        description: "Inspiring creativity and connecting people worldwide.",
-        image: "/images/Media-Entertainment.jpg",
-        link: "/media",
-    },
-    {
-        title: "Agriculture & Food",
-        description: "Cultivating growth from farm to table.",
-        image: "/images/Agriculture_Food.webp",
-        link: "/agriculture",
-    },
-    {
-        title: "Jewellery",
-        description: "Crafting elegance that defines your style.",
-        image: "/images/jewellery.webp",
-        link: "/jewellery",
-    },
-    {
-        title: "Education & Learning",
-        description: "Empowering minds through innovative education.",
-        image: "/images/Education-Learning.avif",
-        link: "/education",
-    },
-    {
-        title: "Technology & Innovation",
-        description: "Innovating the future, one idea at a time.",
-        image: "/images/Technology-Innovation.avif",
-        link: "/technology",
-    },
+{
+    title: "Hotels & Resorts",
+    description: "Experience luxury and comfort while creating unforgettable memories.",
+    image: "/images/hotel-and-resort.webp",
+    slug: "hotels-and-resorts",
+},
+{
+    title: "Healthcare",
+    description: "Trusted healthcare services dedicated to your well-being.",
+    image: "/images/healthcare.jpg",
+    slug: "healthcare-services",
+},
+{
+    title: "Restaurants & Cafes",
+    description: "Savor delicious meals and relaxing ambiance at top eateries.",
+    image: "/images/restaurant-and-cafe.webp",
+    slug: "restaurants-and-cafes",
+},
+{
+    title: "Travel & Tourism Services",
+    description: "Discover and explore amazing destinations with ease.",
+    image: "/images/travel-and-tourism.webp",
+    slug: "travel-and-tourism-services",
+},
+{
+    title: "Real Estate",
+    description: "Find, showcase, and manage properties seamlessly.",
+    image: "/images/real-estate.jpg",
+    slug: "real-estate-and-properties",
+},
+    // {
+    //     title: "Finance & Banking",
+    //     description: "Smart solutions for your financial growth.",
+    //     image: "/images/Finance_Banking.webp",
+    //     link: "/finance",
+    // },
+    // {
+    //     title: "Retail & E-commerce",
+    //     description: "Bringing the best products to your doorstep.",
+    //     image: "/images/Retail_E-commerce.jpg",
+    //     link: "/retail",
+    // },
+    // {
+    //     title: "Hospitality & Tourism",
+    //     description: "Creating memorable experiences around the world.",
+    //     image: "/images/Hospitality_Tourism.jpg",
+    //     link: "/tourism",
+    // },
+    // {
+    //     title: "Manufacturing & Industrial",
+    //     description: "Powering progress through innovation and efficiency.",
+    //     image: "/images/manufacturing.webp",
+    //     link: "/manufacturing",
+    // },
+    // {
+    //     title: "Energy & Utilities",
+    //     description: "Sustaining the future with clean and smart energy.",
+    //     image: "/images/Energy_Utilities.avif",
+    //     link: "/energy",
+    // },
+    // {
+    //     title: "Transportation & Logistics",
+    //     description: "Delivering efficiency across every mile.",
+    //     image: "/images/Transportation_Logistics.webp",
+    //     slug: "transportation-and-logistics",
+    // },
+    // {
+    //     title: "Media & Entertainment",
+    //     description: "Inspiring creativity and connecting people worldwide.",
+    //     image: "/images/Media-Entertainment.jpg",
+    //     link: "/media",
+    // },
+    // {
+    //     title: "Agriculture & Food",
+    //     description: "Cultivating growth from farm to table.",
+    //     image: "/images/Agriculture_Food.webp",
+    //     link: "/agriculture",
+    // },
+    // {
+    //     title: "Jewellery",
+    //     description: "Crafting elegance that defines your style.",
+    //     image: "/images/jewellery.webp",
+    //     link: "/jewellery",
+    // },
+    // {
+    //     title: "Education & Learning",
+    //     description: "Empowering minds through innovative education.",
+    //     image: "/images/Education-Learning.avif",
+    //     link: "/education",
+    // },
+    // {
+    //     title: "Technology & Innovation",
+    //     description: "Innovating the future, one idea at a time.",
+    //     image: "/images/Technology-Innovation.avif",
+    //     link: "/technology",
+    // },
+
 ];
 
 export default function Category() {
