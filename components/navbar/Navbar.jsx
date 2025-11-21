@@ -27,6 +27,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 
+
 export default function Navbar() {
     const { isAuthenticated } = useAuthStore();
     const [open, setOpen] = useState(false);
@@ -93,7 +94,7 @@ export default function Navbar() {
                         <Link href="/about" className="font-medium text-gray-900 hover:text-[#249732]">
                             About
                         </Link>
-                        <Link href="/category" className="font-medium text-gray-900 hover:text-[#249732]">
+                        <Link href="/categories" className="font-medium text-gray-900 hover:text-[#249732]">
                             Categories
                         </Link>
 
@@ -107,7 +108,7 @@ export default function Navbar() {
                         </Button>
 
                         <div className="flex items-center gap-4">
-                            {isAuthenticated && (
+                            {/* {isAuthenticated && (
                                 <>
                                     <Button
                                         asChild
@@ -153,7 +154,7 @@ export default function Navbar() {
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                 </>
-                            )}
+                            )} */}
 
                             {/* {!isAuthenticated && (
                                 <Button
@@ -189,7 +190,7 @@ export default function Navbar() {
                                         Contact
                                     </Link>
 
-                                    {isAuthenticated && (
+                                    {/* {isAuthenticated && (
                                         <Button
                                             onClick={() => setOpen(false)}
                                             className="bg-[#249732] hover:bg-green-700 text-white rounded-full px-5 py-2 shadow-md flex items-center gap-2"
@@ -240,7 +241,7 @@ export default function Navbar() {
                                         >
                                             <LogIn className="w-5 h-5" /> Sign In
                                         </Button>
-                                    )}
+                                    )} */}
                                 </nav>
                             </SheetContent>
                         </Sheet>
