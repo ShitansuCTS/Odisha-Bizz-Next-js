@@ -111,17 +111,55 @@ const AllListingWithFilter = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         setLoading(true);
+
         try {
-            await axios.put(`/api/update-listings/${selectedListing._id}`, selectedListing);
-            toast.success("Listing updated!");
+            const formData = new FormData();
+
+            // Basic fields
+            formData.append("title", selectedListing.title);
+            formData.append("description", selectedListing.description);
+            formData.append("category", selectedListing.category);
+            formData.append("status", selectedListing.status);
+            formData.append("email", selectedListing.email);
+            formData.append("phone", selectedListing.phone);
+
+            // Address (nested)
+            formData.append("address[district]", selectedListing.address?.district || "");
+            formData.append("address[state]", selectedListing.address?.state || "");
+            formData.append("address[pincode]", selectedListing.address?.pincode || "");
+
+            // Social media (nested)
+            formData.append("socialMedia[facebook]", selectedListing.socialMedia?.facebook || "");
+            formData.append("socialMedia[instagram]", selectedListing.socialMedia?.instagram || "");
+            formData.append("socialMedia[twitter]", selectedListing.socialMedia?.twitter || "");
+            formData.append("socialMedia[linkedin]", selectedListing.socialMedia?.linkedin || "");
+            formData.append("socialMedia[website]", selectedListing.socialMedia?.website || "");
+
+            // Image (only if user selected new)
+            if (selectedListing.image instanceof File) {
+                formData.append("image", selectedListing.image);
+            }
+
+            const res = await axios.put(
+                `/api/update-listing/${selectedListing._id}`,
+                formData,
+                {
+                    headers: { "Content-Type": "multipart/form-data" },
+                }
+            );
+
+            toast.success("Listing updated successfully!");
             setOpen(false);
             fetchData(selectedCategory, status, stateFilter, page);
-        } catch (err) {
-            toast.error("Failed to update");
+
+        } catch (error) {
+            console.error(error);
+            toast.error("Failed to update listing.");
         } finally {
             setLoading(false);
         }
     };
+
 
     useEffect(() => {
         fetchData(selectedCategory, status, stateFilter, page);
@@ -417,17 +455,16 @@ const AllListingWithFilter = () => {
                                     className="border border-gray-300 rounded-md p-2 text-sm focus:ring-[#b6985a] focus:border-[#b6985a]"
                                 >
                                     <option value="">Select Category</option>
-                                    <option value="Real Estate">Real Estate</option>
-                                    <option value="Healthcare">Healthcare</option>
-                                    <option value="Finance & Banking">Finance & Banking</option>
-                                    <option value="Retail & E-commerce">Retail & E-commerce</option>
-                                    <option value="Hospitality & Tourism">Hospitality & Tourism</option>
-                                    <option value="Manufacturing & Industrial">Manufacturing & Industrial</option>
-                                    <option value="Energy & Utilities">Energy & Utilities</option>
-                                    <option value="Transportation & Logistics">Transportation & Logistics</option>
-                                    <option value="Media & Entertainment">Media & Entertainment</option>
-                                    <option value="Agriculture & Food">Agriculture & Food</option>
-                                    <option value="Jewellery">Jewellery</option>
+                                    <option value="Hotels & Resorts">Hotels & Resorts</option>
+                                    <option value="Restaurants & Cafes">Restaurants & Cafes</option>
+                                    <option value="Travel & Tourism Services">Travel & Tourism Services</option>
+                                    <option value="Real Estate & Properties">Real Estate & Properties</option>
+                                    <option value="Healthcare Services">Healthcare Services</option>
+                                    <option value="Education & Coaching">Education & Coaching</option>
+                                    <option value="Salons, Spas & Wellness">Salons, Spas & Wellness</option>
+                                    <option value="Grocery & Supermarkets">Grocery & Supermarkets</option>
+                                    <option value="Fashion & Clothing Stores">Fashion & Clothing Stores</option>
+                                    <option value="Electronics & Mobile Stores">Electronics & Mobile Stores</option>
                                 </select>
                             </div>
 
