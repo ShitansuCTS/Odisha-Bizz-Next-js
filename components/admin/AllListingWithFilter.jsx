@@ -170,14 +170,14 @@ const AllListingWithFilter = () => {
     return (
         <div className="lg:mt-14">
             {/* Header */}
-            <div className="flex items-center gap-3 lg:mb-3.5">
+            <div className="flex items-center gap-3 lg:mb-6">
                 <span className="text-2xl font-bold text-slate-800">Listings Details</span>
             </div>
 
             <Card className="bg-white border-none shadow-none">
                 {/* Filters */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-around mb-0 gap-4">
-                    <CardTitle className="text-2xl font-semibold text-slate-800 flex items-center gap-2">
+                    <CardTitle className="text-2xl font-semibold text-slate-800 flex items-center gap-2 lg:mb-7">
                         <div className="flex items-center gap-3">
                             <Filter size={24} className="text-blue-500" />
                             <span className="text-lg font-semibold text-[#5156be]">Total Listings</span>
@@ -199,7 +199,7 @@ const AllListingWithFilter = () => {
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="all">All Categories</SelectItem>
-                                <SelectItem value="Healthcare">Healthcare</SelectItem>
+                                <SelectItem value="Hotels & Resorts">Hotels & Resorts</SelectItem>
                                 <SelectItem value="Jewellery">Jewellery</SelectItem>
                                 <SelectItem value="Hotel">Hotel</SelectItem>
                             </SelectContent>
@@ -232,8 +232,8 @@ const AllListingWithFilter = () => {
                             <SelectContent>
                                 <SelectItem value="all">All States</SelectItem>
                                 <SelectItem value="Odisha">Odisha</SelectItem>
-                                <SelectItem value="Delhi">Delhi</SelectItem>
-                                <SelectItem value="Pune">Pune</SelectItem>
+                                {/* <SelectItem value="Delhi">Delhi</SelectItem>
+                                <SelectItem value="Pune">Pune</SelectItem> */}
                             </SelectContent>
                         </Select>
 
