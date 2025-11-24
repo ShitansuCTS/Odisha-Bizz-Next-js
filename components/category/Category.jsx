@@ -6,36 +6,50 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 
 const services = [
-{
-    title: "Hotels & Resorts",
-    description: "Experience luxury and comfort while creating unforgettable memories.",
-    image: "/images/hotel-and-resort.webp",
-    slug: "hotels-and-resorts",
-},
-{
-    title: "Healthcare",
-    description: "Trusted healthcare services dedicated to your well-being.",
-    image: "/images/healthcare.jpg",
-    slug: "healthcare-services",
-},
-{
-    title: "Restaurants & Cafes",
-    description: "Savor delicious meals and relaxing ambiance at top eateries.",
-    image: "/images/restaurant-and-cafe.webp",
-    slug: "restaurants-and-cafes",
-},
-{
-    title: "Travel & Tourism Services",
-    description: "Discover and explore amazing destinations with ease.",
-    image: "/images/travel-and-tourism.webp",
-    slug: "travel-and-tourism-services",
-},
-{
-    title: "Real Estate",
-    description: "Find, showcase, and manage properties seamlessly.",
-    image: "/images/real-estate.jpg",
-    slug: "real-estate-and-properties",
-},
+    {
+        title: "Hotels & Resorts",
+        description: "Experience luxury and comfort while creating unforgettable memories.",
+        image: "/images/hotel-and-resort.webp",
+        slug: "hotels-and-resorts",
+    },
+    {
+        title: "Healthcare",
+        description: "Trusted healthcare services dedicated to your well-being.",
+        image: "/images/healthcare.jpg",
+        slug: "healthcare-services",
+    },
+    {
+        title: "Restaurants & Cafes",
+        description: "Savor delicious meals and relaxing ambiance at top eateries.",
+        image: "/images/restaurant-and-cafe.webp",
+        slug: "restaurants-and-cafes",
+    },
+    {
+        title: "Travel & Tourism Services",
+        description: "Discover and explore amazing destinations with ease.",
+        image: "/images/travel-and-tourism.webp",
+        slug: "travel-and-tourism-services",
+    },
+    {
+        title: "Real Estate",
+        description: "Find, showcase, and manage properties seamlessly.",
+        image: "/images/real-estate.jpg",
+        slug: "real-estate-and-properties",
+    },
+    {
+        title: "Education & Coaching",
+        description: "Find trusted institutes and coaching centers near you.",
+        image: "/images/Education-Learning.avif",
+        slug: "education-and-coaching",
+    },
+    {
+        title: "Salons, Spas & Wellness",
+        description: "Discover top salons, spas, and wellness spots.",
+        image: "/images/spa.webp",
+        slug: "salons-spas-and-wellness",
+    },
+
+
     // {
     //     title: "Finance & Banking",
     //     description: "Smart solutions for your financial growth.",
@@ -167,7 +181,7 @@ export default function Category() {
 
                                     <div className="mt-6 flex justify-end">
                                         <Link
-                                           href={`/category/${service.slug}`}
+                                            href={`/category/${service.slug}`}
                                             className="flex items-center gap-2 bg-[#249732] hover:bg-green-600 text-white rounded-full px-5 py-2 shadow-md transition-all duration-300"
                                         >
                                             More <ArrowRight className="w-4 h-4" />

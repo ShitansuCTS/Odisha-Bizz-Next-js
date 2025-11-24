@@ -100,8 +100,8 @@ export default function CategoryListingPage({ categorySlug }) {
                     in <span className="text-blue-600">Bhubaneswar</span>
                 </h2>
 
-                <div className="flex gap-2">
-                    {/* <Select value={selectedDistrict} onValueChange={setSelectedDistrict}>
+                {/* <div className="flex gap-2">
+                    <Select value={selectedDistrict} onValueChange={setSelectedDistrict}>
                         <SelectTrigger className="w-40 h-10">
                             <SelectValue placeholder="Select District" />
                         </SelectTrigger>
@@ -112,14 +112,14 @@ export default function CategoryListingPage({ categorySlug }) {
                                 </SelectItem>
                             ))}
                         </SelectContent>
-                    </Select> */}
+                    </Select>
 
                     <Button onClick={() => setDistrict(selectedDistrict)}>Your District</Button>
-                </div>
+                </div> */}
             </div>
 
             {/* MAIN + SIDEBAR */}
-            <div className="flex flex-col md:flex-row gap-10 py-4 px-14 w-full bg-gray-100 min-h-screen">
+            <div className="flex flex-col md:flex-row gap-10 py-4 px-6 md:px-14 w-full bg-gray-100 min-h-screen">
                 {/* LEFT SIDE LISTINGS */}
                 <section className="flex-1 flex flex-col gap-8">
                     {mainListings.length === 0 ? (
@@ -145,7 +145,7 @@ export default function CategoryListingPage({ categorySlug }) {
                                 key={idx}
                                 className="rounded-xs border border-muted bg-white shadow-sm p-5 flex flex-col transition-all duration-300 hover:shadow-md hover:scale-[1.01]"
                             >
-                                <div className="flex flex-col md:flex-row items-start gap-4">
+                                <div className="flex flex-col md:flex-row items-start gap-4 w-full">
 
                                     {/* Image */}
                                     <div className="w-full md:w-44 h-40 shrink-0 overflow-hidden rounded-lg bg-gray-100">
@@ -165,8 +165,9 @@ export default function CategoryListingPage({ categorySlug }) {
                                     </div>
 
                                     {/* Info */}
-                                    <div className="flex-1">
-                                        {/* Badge with Tooltip */}
+                                    <div className="flex-1 w-full">
+
+                                        {/* Badge */}
                                         <TooltipProvider>
                                             <Tooltip>
                                                 <TooltipTrigger asChild>
@@ -184,22 +185,20 @@ export default function CategoryListingPage({ categorySlug }) {
                                             </Tooltip>
                                         </TooltipProvider>
 
-                                        {/* Title + Rating */}
-                                        <div className="flex items-center justify-between mb-2">
+                                        {/* Title & Rating */}
+                                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-1 sm:gap-0">
+
                                             <div className="flex items-center gap-2">
-                                                <span className="text-lg font-bold text-black">
-                                                    {idx + 1}.
-                                                </span>
-                                                <h2 className="text-2xl font-semibold text-neutral-900">
+                                                <span className="text-lg font-bold text-black">{idx + 1}.</span>
+                                                <h2 className="text-xl sm:text-2xl font-semibold text-neutral-900 wrap-break-words">
                                                     {item.title}
                                                 </h2>
                                             </div>
 
-                                            {/* Rating Tooltip */}
                                             <TooltipProvider>
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
-                                                        <div className="flex items-center gap-2 bg-[#007A0C] text-white px-2.5 py-0.5 rounded-full text-sm font-medium shadow-sm cursor-default">
+                                                        <div className="hidden sm:flex items-center gap-2 bg-[#007A0C] text-white px-2.5 py-0.5 rounded-full text-sm font-medium shadow-sm cursor-default w-fit">
                                                             <FaStar className="text-white" />
                                                             <span>{(Math.random() * (5 - 3.5) + 3.5).toFixed(1)}</span>
                                                         </div>
@@ -209,6 +208,7 @@ export default function CategoryListingPage({ categorySlug }) {
                                                     </TooltipContent>
                                                 </Tooltip>
                                             </TooltipProvider>
+
                                         </div>
 
                                         <Separator className="mb-2" />
@@ -224,7 +224,7 @@ export default function CategoryListingPage({ categorySlug }) {
                                                     <div className="w-7 h-7 flex items-center justify-center rounded-full bg-green-100 text-green-600 shadow-sm">
                                                         <Phone className="w-4 h-4" />
                                                     </div>
-                                                    <span className="text-neutral-600">{item.phone}</span>
+                                                    <span className="text-neutral-600 break-all">{item.phone}</span>
                                                 </div>
                                             )}
 
@@ -233,7 +233,7 @@ export default function CategoryListingPage({ categorySlug }) {
                                                     <div className="w-7 h-7 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 shadow-sm">
                                                         <Mail className="w-4 h-4" />
                                                     </div>
-                                                    <span className="text-neutral-600">{item.email}</span>
+                                                    <span className="text-neutral-600 break-all">{item.email}</span>
                                                 </div>
                                             )}
 
@@ -252,42 +252,18 @@ export default function CategoryListingPage({ categorySlug }) {
                                     </div>
                                 </div>
 
-                                {/* Social + WhatsApp Section */}
-                                <div className="flex items-center justify-between mt-4 pl-1">
+                                {/* Social + WhatsApp */}
+                                <div className="flex items-center justify-between mt-4 w-full gap-3 flex-wrap sm:flex-nowrap">
 
                                     {/* Social Icons */}
-                                    <div className="flex items-center gap-3 ml-48">
+                                    <div className="flex flex-row items-center gap-2 sm:gap-3 md:ml-48">
+
                                         {[
-                                            {
-                                                icon: FaFacebookF,
-                                                color: "bg-blue-600",
-                                                url: item.socialMedia?.facebook,
-                                                label: "Facebook",
-                                            },
-                                            {
-                                                icon: FaInstagram,
-                                                color: "bg-gradient-to-tr from-pink-500 to-orange-400",
-                                                url: item.socialMedia?.instagram,
-                                                label: "Instagram",
-                                            },
-                                            {
-                                                icon: FaTwitter,
-                                                color: "bg-sky-500",
-                                                url: item.socialMedia?.twitter,
-                                                label: "Twitter",
-                                            },
-                                            {
-                                                icon: FaLinkedinIn,
-                                                color: "bg-blue-700",
-                                                url: item.socialMedia?.linkedin,
-                                                label: "LinkedIn",
-                                            },
-                                            {
-                                                icon: FaGlobe,
-                                                color: "bg-gray-700",
-                                                url: item.socialMedia?.website,
-                                                label: "Website",
-                                            },
+                                            { icon: FaFacebookF, color: "bg-blue-600", url: item.socialMedia?.facebook, label: "Facebook" },
+                                            { icon: FaInstagram, color: "bg-gradient-to-tr from-pink-500 to-orange-400", url: item.socialMedia?.instagram, label: "Instagram" },
+                                            { icon: FaTwitter, color: "bg-sky-500", url: item.socialMedia?.twitter, label: "Twitter" },
+                                            { icon: FaLinkedinIn, color: "bg-blue-700", url: item.socialMedia?.linkedin, label: "LinkedIn" },
+                                            { icon: FaGlobe, color: "bg-gray-700", url: item.socialMedia?.website, label: "Website" },
                                         ].map(
                                             (soc, i) =>
                                                 soc.url && (
@@ -298,9 +274,20 @@ export default function CategoryListingPage({ categorySlug }) {
                                                                     href={soc.url}
                                                                     target="_blank"
                                                                     rel="noopener noreferrer"
-                                                                    className={`${soc.color} w-6 h-6 flex items-center justify-center rounded-full text-white transition-all hover:brightness-125 hover:scale-105 shadow-md`}
+                                                                    className={`
+                                        ${soc.color}
+                                        text-white rounded-full shadow-md flex items-center justify-center
+                                        
+                                        /* Mobile small */
+                                        w-6 h-6 text-[10px]
+
+                                        /* Desktop normal */
+                                        sm:w-6 sm:h-6 sm:text-sm
+
+                                        transition-all hover:brightness-125 hover:scale-105
+                                    `}
                                                                 >
-                                                                    <soc.icon className="text-sm" />
+                                                                    <soc.icon />
                                                                 </a>
                                                             </TooltipTrigger>
                                                             <TooltipContent>
@@ -310,6 +297,7 @@ export default function CategoryListingPage({ categorySlug }) {
                                                     </TooltipProvider>
                                                 )
                                         )}
+
                                     </div>
 
                                     {/* WhatsApp Button */}
@@ -317,7 +305,15 @@ export default function CategoryListingPage({ categorySlug }) {
                                         <Button
                                             asChild
                                             size="sm"
-                                            className="bg-[#007A0C] hover:bg-green-900 text-white font-semibold gap-2 rounded-md px-5 shadow-md flex items-center"
+                                            className="
+                bg-[#007A0C] hover:bg-green-900 text-white font-semibold shadow-md flex items-center gap-1
+
+                /* Mobile small size */
+                px-2 py-1 text-xs h-7
+
+                /* Desktop normal size */
+                sm:px-5 sm:py-2 sm:text-sm sm:h-auto
+            "
                                         >
                                             <a
                                                 href={`https://wa.me/${item.phone.replace(/[^0-9]/g, "")}`}
@@ -325,25 +321,20 @@ export default function CategoryListingPage({ categorySlug }) {
                                                 rel="noopener noreferrer"
                                             >
                                                 <motion.span
-                                                    animate={{
-                                                        scale: [1, 1.2, 1],
-                                                        rotate: [0, -10, 10, 0],
-                                                    }}
-                                                    transition={{
-                                                        duration: 1.5,
-                                                        repeat: Infinity,
-                                                        ease: "easeInOut",
-                                                    }}
+                                                    animate={{ scale: [1, 1.2, 1], rotate: [0, -10, 10, 0] }}
+                                                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                                                     className="inline-flex"
                                                 >
-                                                    <FaWhatsapp className="text-white text-lg" />
+                                                    <FaWhatsapp className="text-white text-base sm:text-lg" />
                                                 </motion.span>
-                                                <span className="ml-1">WhatsApp</span>
+                                                <span className="hidden sm:inline ml-1">WhatsApp</span>
                                             </a>
                                         </Button>
                                     )}
                                 </div>
+
                             </Card>
+
 
                         ))
                     )}

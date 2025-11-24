@@ -28,99 +28,107 @@ export const services = [
   {
     title: "Real Estate",
     description: "Building dreams, one property at a time.",
-    author: "Lorem Ipsum",
+    // author: "Lorem Ipsum",
     icon: <Building2 className="w-5 h-5 text-[#249732]" />,
     image: "/images/real-estate.jpg",
-    link: "/real-estate",
+    slug: "real-estate-and-properties",
   },
   {
     title: "Healthcare",
     description: "Caring for your health, every step of the way.",
-    author: "Lorem Ipsum",
+    // author: "Lorem Ipsum",
     icon: <HeartPulse className="w-5 h-5 text-[#249732]" />,
     image: "/images/healthcare.jpg",
-    link: "/healthcare",
+    slug: "healthcare",
   },
+  // {
+  //   title: "Finance & Banking",
+  //   description: "Smart solutions for your financial growth.",
+  //   // author: "Lorem Ipsum",
+  //   icon: <Banknote className="w-5 h-5 text-[#249732]" />,
+  //   image: "/images/Finance_Banking.webp",
+  //   slug: "/finance",
+  // },
+  // {
+  //   title: "Retail & E-commerce",
+  //   description: "Bringing the best products to your doorstep.",
+  //   // author: "Lorem Ipsum",
+  //   icon: <ShoppingBag className="w-5 h-5 text-[#249732]" />,
+  //   image: "/images/Retail_E-commerce.jpg",
+  //   slug: "/retail",
+  // },
   {
-    title: "Finance & Banking",
-    description: "Smart solutions for your financial growth.",
-    author: "Lorem Ipsum",
-    icon: <Banknote className="w-5 h-5 text-[#249732]" />,
-    image: "/images/Finance_Banking.webp",
-    link: "/finance",
-  },
-  {
-    title: "Retail & E-commerce",
-    description: "Bringing the best products to your doorstep.",
-    author: "Lorem Ipsum",
-    icon: <ShoppingBag className="w-5 h-5 text-[#249732]" />,
-    image: "/images/Retail_E-commerce.jpg",
-    link: "/retail",
-  },
-  {
-    title: "Hospitality & Tourism",
+    title: "Hotels & Resorts",
     description: "Creating memorable experiences around the world.",
-    author: "Lorem Ipsum",
+    // author: "Lorem Ipsum",
     icon: <Plane className="w-5 h-5 text-[#249732]" />,
-    image: "/images/Hospitality_Tourism.jpg",
-    link: "/tourism",
+    image: "/images/hotel-and-resort.webp",
+    slug: "hotels-and-resorts",
   },
+  // {
+  //   title: "Manufacturing & Industrial",
+  //   description: "Powering progress through innovation and efficiency.",
+  //   // author: "Lorem Ipsum",
+  //   icon: <Factory className="w-5 h-5 text-[#249732]" />,
+  //   image: "/images/manufacturing.webp",
+  //   slug: "/manufacturing",
+  // },
+  // {
+  //   title: "Energy & Utilities",
+  //   description: "Sustaining the future with clean and smart energy.",
+  //   // author: "Lorem Ipsum",
+  //   icon: <Zap className="w-5 h-5 text-[#249732]" />,
+  //   image: "/images/Energy_Utilities.avif",
+  //   slug: "/energy",
+  // },
   {
-    title: "Manufacturing & Industrial",
-    description: "Powering progress through innovation and efficiency.",
-    author: "Lorem Ipsum",
-    icon: <Factory className="w-5 h-5 text-[#249732]" />,
-    image: "/images/manufacturing.webp",
-    link: "/manufacturing",
-  },
-  {
-    title: "Energy & Utilities",
-    description: "Sustaining the future with clean and smart energy.",
-    author: "Lorem Ipsum",
-    icon: <Zap className="w-5 h-5 text-[#249732]" />,
-    image: "/images/Energy_Utilities.avif",
-    link: "/energy",
-  },
-  {
-    title: "Transportation & Logistics",
+    title: "Travel & Tourism Services",
     description: "Delivering efficiency across every mile.",
-    author: "Lorem Ipsum",
+    // author: "Lorem Ipsum",
     icon: <Truck className="w-5 h-5 text-[#249732]" />,
     image: "/images/Transportation_Logistics.webp",
-    link: "/transportation",
+    slug: "travel-and-tourism-services",
   },
-  {
-    title: "Media & Entertainment",
-    description: "Inspiring creativity and connecting people worldwide.",
-    author: "Lorem Ipsum",
-    icon: <Clapperboard className="w-5 h-5 text-[#249732]" />,
-    image: "/images/Media-Entertainment.jpg",
-    link: "/media",
-  },
-  {
-    title: "Agriculture & Food",
-    description: "Cultivating growth from farm to table.",
-    author: "Lorem Ipsum",
-    icon: <Leaf className="w-5 h-5 text-[#249732]" />,
-    image: "/images/Agriculture_Food.webp",
-    link: "/agriculture",
-  },
+  // {
+  //   title: "Media & Entertainment",
+  //   description: "Inspiring creativity and connecting people worldwide.",
+  //   // author: "Lorem Ipsum",
+  //   icon: <Clapperboard className="w-5 h-5 text-[#249732]" />,
+  //   image: "/images/Media-Entertainment.jpg",
+  //   slug: "/media",
+  // },
+  // {
+  //   title: "Agriculture & Food",
+  //   description: "Cultivating growth from farm to table.",
+  //   // author: "Lorem Ipsum",
+  //   icon: <Leaf className="w-5 h-5 text-[#249732]" />,
+  //   image: "/images/Agriculture_Food.webp",
+  //   slug: "/agriculture",
+  // },
   {
     title: "Education & Learning",
     description: "Empowering minds through innovative education.",
-    author: "Lorem Ipsum",
+    // author: "Lorem Ipsum",
     icon: <BookOpen className="w-5 h-5 text-[#249732]" />,
     image: "/images/Education-Learning.avif",
-    link: "/education",
+    slug: "education-and-coaching",
   },
   {
-    title: "Technology & Innovation",
-    description: "Innovating the future, one idea at a time.",
-    author: "Lorem Ipsum",
-    icon: <Cpu className="w-5 h-5 text-[#249732]" />,
-    image: "/images/Technology-Innovation.avif",
-    link: "/technology",
+    title: "Salons, Spas & Wellness",
+    description: "Empowering minds through innovative education.",
+    // author: "Lorem Ipsum",
+    icon: <BookOpen className="w-5 h-5 text-[#249732]" />,
+    image: "/images/spa.webp",
+    slug: "salons-spas-and-wellness",
   },
+  // {
+  //   title: "Technology & Innovation",
+  //   description: "Innovating the future, one idea at a time.",
+  //   // author: "Lorem Ipsum",
+  //   icon: <Cpu className="w-5 h-5 text-[#249732]" />,
+  //   image: "/images/Technology-Innovation.avif",
+  //   slug: "/technology",
+  // },
 ];
 
 export default function FeaturedServices() {
@@ -212,23 +220,24 @@ export default function FeaturedServices() {
                     className="w-full h-48 object-cover"
                     loading="lazy"
                   />
-                  <CardContent className="p-5 flex flex-col h-56 justify-between -mt-5">
+                  <CardContent className="p-5 flex flex-col h-56 justify-between mt-2">
                     <div>
                       <div className="flex items-center gap-2 mb-2 mt-0">
                         {service.icon}
-                        <Badge variant="secondary">{service.author}</Badge>
+                        <h3 className="text-lg font-semibold text-gray-800">
+                          {service.title}
+                        </h3>
                       </div>
-                      <h3 className="text-lg font-semibold mb-2 text-gray-800">
-                        {service.title}
-                      </h3>
+
                       <p className="text-gray-600 text-sm">{service.description}</p>
                     </div>
                     <Link
-                      href={`/category?category=${encodeURIComponent(service.title)}`}
+                      href={`/category/${service.slug}`}
                       className="bg-[#249732] hover:bg-green-700 text-white rounded-full px-5 py-1.5 mt-4 text-center text-sm font-bold block"
                     >
                       Learn More
                     </Link>
+
                   </CardContent>
                 </Card>
               ))}

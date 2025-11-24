@@ -7,49 +7,50 @@ import Link from "next/link";
 
 const slides = [
   {
-    title: "Find the Best Experts",
-    subtitle: "Looking for the Right Professionals?",
+    title: "Connect With Odisha’s Top Professionals",
+    subtitle: "Find trusted experts and services across every industry.",
     btnText: "Get Best Quotes",
     img: "/images/real-estate.jpg",
   },
   {
-    title: "Grow Your Business Smarter",
-    subtitle: "Trusted Vendors & Partners",
+    title: "Grow Your Business Across Odisha",
+    subtitle: "Partner with verified vendors and expand smarter.",
     btnText: "Explore Opportunities",
     img: "/images/Finance_Banking.webp",
   },
   {
-    title: "Connect. Discover. Expand.",
-    subtitle: "Explore 5.9 Crore+ Products & Services",
+    title: "Discover Odisha’s Leading Services",
+    subtitle: "Explore businesses, products, and solutions near you.",
     btnText: "Start Exploring",
     img: "/images/Education-Learning.avif",
   },
 ];
 
+
 const categories = [
   {
-    title: "Hospitality & Tourism",
-    desc: "Hotels, Travel Agencies & Tour Services",
-    img: "/images/Hospitality_Tourism.jpg",
-    link: "/category/hospitality",
+    title: "Education & Coaching",
+    description: "Find trusted institutes and coaching centers near you.",
+    img: "/images/Education-Learning.avif",
+    slug: "education-and-coaching",
   },
   {
-    title: "Finance & Banking",
-    desc: "Financial Services, Loans & Advisors",
-    img: "/images/Finance_Banking.webp",
-    link: "/category/finance",
+    title: "Salons, Spas & Wellness",
+    description: "Discover top salons, spas, and wellness spots.",
+    img: "/images/spa.webp",
+    slug: "salons-spas-and-wellness",
   },
   {
-    title: "Healthcare",
-    desc: "Hospitals, Clinics & Doctors",
-    img: "/images/healthcare.jpg",
-    link: "/category/healthcare",
+    title: "Travel & Tourism Services",
+    description: "Hospitals, Clinics & Doctors",
+    img: "/images/travel-and-tourism.webp",
+    slug: "healthcare",
   },
   {
-    title: "Real Estate",
-    desc: "Builders, Agents & Property Services",
-    img: "/images/real-estate.jpg",
-    link: "/category/real-estate",
+    title: "Restaurants & Cafes",
+    description: "Builders, Agents & Property Services",
+    img: "/images/restaurant-and-cafe.webp",
+    slug: "restaurants-and-cafes",
   },
 ];
 
@@ -87,9 +88,12 @@ export default function HomeBanner() {
               <h2 className="text-2xl md:text-4xl font-extrabold mb-4 leading-tight">
                 {slide.title}
               </h2>
-              <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-5 py-2 rounded-md w-fit shadow-md transition">
-                {slide.btnText}
-              </button>
+              <Link href="/contact">
+                <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-5 py-2 rounded-md w-fit shadow-md transition">
+                  {slide.btnText}
+                </button>
+              </Link>
+
             </div>
           </motion.div>
         ))}
@@ -100,9 +104,8 @@ export default function HomeBanner() {
             <div
               key={i}
               onClick={() => setCurrent(i)}
-              className={`h-2 w-2 rounded-full cursor-pointer ${
-                current === i ? "bg-white" : "bg-gray-400/60"
-              }`}
+              className={`h-2 w-2 rounded-full cursor-pointer ${current === i ? "bg-white" : "bg-gray-400/60"
+                }`}
             />
           ))}
         </div>
@@ -119,7 +122,7 @@ export default function HomeBanner() {
       {/* RIGHT: Clickable Cards */}
       <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 flex-1">
         {categories.map((cat, i) => (
-          <Link key={i} href={`/category?category=${encodeURIComponent(cat.title)}`} className="block">
+          <Link key={i} href={`/category/${cat.slug}`} className="block">
             <motion.div
               whileHover={{ scale: 1.04, y: -4 }}
               transition={{ type: "spring", stiffness: 300 }}
