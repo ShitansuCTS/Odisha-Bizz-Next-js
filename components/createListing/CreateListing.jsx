@@ -14,6 +14,8 @@ import {
     SelectContent,
     SelectItem,
 } from "@/components/ui/select";
+import useAuthStore from "@/store/authStore";
+
 
 
 export default function CreateListing() {
@@ -25,7 +27,19 @@ export default function CreateListing() {
     const [selectedState, setSelectedState] = useState("");
     const [districts, setDistricts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const { isAuthenticated, checkAuth } = useAuthStore();
 
+    useEffect(() => {
+        const verify = async () => {
+            const auth = await checkAuth();  // wait for auth result
+
+            if (!auth) {
+                router.push("/admin/login");
+            }
+        };
+
+        verify();
+    }, []); // run once only
 
 
     const [formData, setFormData] = useState({
@@ -43,6 +57,8 @@ export default function CreateListing() {
             website: "",
         },
     });
+
+
 
     // Fetch all states
     useEffect(() => {

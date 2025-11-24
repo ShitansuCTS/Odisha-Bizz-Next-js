@@ -11,11 +11,14 @@ const useAuthStore = create((set) => ({
             if (res.ok) {
                 const data = await res.json();
                 set({ userId: data.userId, isAuthenticated: true });
+                return true;
             } else {
                 set({ userId: null, isAuthenticated: false });
+                return false;
             }
         } catch {
             set({ userId: null, isAuthenticated: false });
+            return false;
         }
     },
     logout: () => set({ userId: null, isAuthenticated: false }),
