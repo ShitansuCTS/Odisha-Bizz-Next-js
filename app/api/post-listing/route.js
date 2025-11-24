@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 import ProductListing from "@/models/productListing";
 import { connectDB } from "@/lib/dbConnect";
 import cloudinary from "@/lib/cloudinary";
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
 
 connectDB();
 
@@ -44,6 +46,27 @@ export async function POST(req) {
             imagePublicId = uploadResult.public_id;
         }
 
+
+
+
+        // ✅ NEW: get logged-in user ID from JWT cookie
+        const cookieStore = await cookies(); // await the cookies()
+        const token = cookieStore.get("token")?.value;
+        // console.log(token);
+
+
+        if (!token) {
+            return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 });
+        }
+
+        let userId;
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            userId = decoded.id; // 👈 user ID
+        } catch (err) {
+            return NextResponse.json({ success: false, message: "Invalid token" }, { status: 403 });
+        }
+
         const newListing = new ProductListing({
             title,
             description,
@@ -54,6 +77,8 @@ export async function POST(req) {
             socialMedia,
             imageUrl,
             imagePublicId,
+            owner: userId, // 👈 attach logged-in user
+
         });
 
         await newListing.save();

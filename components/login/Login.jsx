@@ -21,18 +21,29 @@ export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { isAuthenticated, checkAuth } = useAuthStore();
+  const { isAuthenticated, checkAuth, role } = useAuthStore();
 
 
   useEffect(() => {
     const checkToken = async () => {
-      await checkAuth(); // updates the store
-      if (useAuthStore.getState().isAuthenticated) {
-        router.replace("/admin/dashboard");
+      // Update store from token in cookie
+      await checkAuth();
+
+      const { isAuthenticated, role } = useAuthStore.getState();
+
+      if (isAuthenticated) {
+        // Redirect based on role
+        if (role === "admin") {
+          router.replace("/admin/dashboard");
+        } else {
+          router.replace("/user/dashboard");
+        }
       }
     };
+
     checkToken();
-  }, [router, checkAuth]);
+  }, [router]); // only router needed
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -52,15 +63,20 @@ export default function Login() {
 
       if (response.status === 200) {
         toast.success("Login successful!");
-        router.push("/admin/dashboard");
-        // Update the store based on token in cookie
-        await checkAuth();
 
-        // Redirect after store updates
-        if (useAuthStore.getState().isAuthenticated) {
+        // Update store from token in cookie
+        await checkAuth(); // ✅ call only once
+
+        const { role } = useAuthStore.getState(); // get role from store
+
+        // Redirect based on role
+        if (role === "admin") {
           router.replace("/admin/dashboard");
+        } else {
+          router.replace("/user/dashboard");
         }
       }
+
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const status = error.response?.status;

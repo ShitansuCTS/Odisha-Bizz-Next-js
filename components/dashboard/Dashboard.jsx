@@ -13,31 +13,55 @@ import AllListingWithFilter from "@/components/admin/AllListingWithFilter";
 import Leads from "@/components/dashboard/Leads";
 import ProfilePage from "@/components/dashboard/ProfilePage";
 import AnalyticsDashboard from "@/components/dashboard/AnalyticsDashboard";
+import useAuthStore from "@/store/authStore";
+
 
 export default function MainDashboard() {
   const [activeTab, setActiveTab] = useState("Dashboard");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { checkAuth, role } = useAuthStore();
 
-//   useEffect(() => {
-//     const checkAuth = async () => {
-//       setLoading(true);
-//       try {
-//         const res = await axios.get(`${API}/check-auth`, {
-//           withCredentials: true,
-//         });
 
-//         if (res.status === 200) setLoading(false);
-//       } catch (err) {
-//         toast.error("Unauthorized access!");
-//         router.push("/admin/login");
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
+  useEffect(() => {
+    const verifyAccess = async () => {
+      const auth = await checkAuth(); // updates store
 
-//     checkAuth();
-//   }, [router, API]);
+      if (!auth) {
+        toast.error("You must login first!");
+        return router.push("/admin/login");
+      }
+
+      if (role !== "admin") {
+        toast.error("Access denied! Redirecting...");
+        return router.push("/user/dashboard"); // redirect non-admins
+      }
+
+      setLoading(false); // user is admin, allow access
+    };
+
+    verifyAccess();
+  }, [router, checkAuth, role]);
+
+  //   useEffect(() => {
+  //     const checkAuth = async () => {
+  //       setLoading(true);
+  //       try {
+  //         const res = await axios.get(`${API}/check-auth`, {
+  //           withCredentials: true,
+  //         });
+
+  //         if (res.status === 200) setLoading(false);
+  //       } catch (err) {
+  //         toast.error("Unauthorized access!");
+  //         router.push("/admin/login");
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     };
+
+  //     checkAuth();
+  //   }, [router, API]);
 
   const renderContent = () => {
     switch (activeTab) {

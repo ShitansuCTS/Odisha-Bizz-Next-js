@@ -27,7 +27,7 @@ export default function CreateListing() {
     const [selectedState, setSelectedState] = useState("");
     const [districts, setDistricts] = useState([]);
     const [loading, setLoading] = useState(false);
-    const { isAuthenticated, checkAuth } = useAuthStore();
+    const { isAuthenticated, checkAuth, role } = useAuthStore();
 
     useEffect(() => {
         const verify = async () => {
@@ -36,6 +36,8 @@ export default function CreateListing() {
             if (!auth) {
                 router.push("/admin/login");
             }
+            // console.log("User Role:", role);
+            // alert("Your role is: " + role);
         };
 
         verify();

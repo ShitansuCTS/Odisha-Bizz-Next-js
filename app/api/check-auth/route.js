@@ -12,7 +12,9 @@ export async function GET(req) {
         if (!token) return NextResponse.json({ message: "Not authenticated" }, { status: 401 });
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        return NextResponse.json({ message: "Authenticated", userId: decoded.id });
+        return NextResponse.json({
+            message: "Authenticated", userId: decoded.id, role: decoded.role,
+        });
     } catch (err) {
         return NextResponse.json({ message: "Invalid token" }, { status: 403 });
     }

@@ -37,8 +37,11 @@ export async function POST(req) {
             name,
             email,
             password: hashedPassword,
+            role: "user",  // default
         });
 
+
+        console.log("New user created:", newUser);
         return Response.json(
             {
                 message: "Signup successful",

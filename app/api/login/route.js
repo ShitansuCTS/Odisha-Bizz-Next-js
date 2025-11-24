@@ -19,7 +19,7 @@ export async function POST(req) {
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
         if (!isPasswordCorrect) return Response.json({ message: "Invalid credentials" }, { status: 401 });
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
         const cookieStore = await cookies();
         cookieStore.set("token", token, {
@@ -30,7 +30,7 @@ export async function POST(req) {
             path: "/",
         });
 
-        return Response.json({ message: "Login successful", user: { id: user._id, name: user.name, email: user.email } }, { status: 200 });
+        return Response.json({ message: "Login successful", user: { id: user._id, name: user.name, email: user.email, role: user.role } }, { status: 200 });
 
     } catch (err) {
         console.error(err);
