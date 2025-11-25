@@ -6,6 +6,7 @@ import { create } from "zustand";
 export const useResultStore = create((set, get) => ({
     mainListings: [],
     related: [],
+    otherListings: [],
     loading: false,
     error: null,
     fetchedCache: {},
@@ -22,6 +23,7 @@ export const useResultStore = create((set, get) => ({
             set({
                 mainListings: fetchedCache[key].mainListings,
                 related: fetchedCache[key].related,
+                otherListings: fetchedCache[key].otherListings,
                 loading: false,
                 error: null,
             });
@@ -38,15 +40,17 @@ export const useResultStore = create((set, get) => ({
 
             const mainListings = data.mainListings || [];
             const related = data.related || [];
+            const otherListings = data.otherListings || [];
 
             // Cache the results
             set((state) => ({
                 mainListings,
                 related,
+                otherListings,
                 loading: false,
                 fetchedCache: {
                     ...state.fetchedCache,
-                    [key]: { mainListings, related },
+                    [key]: { mainListings, related, otherListings },
                 },
             }));
         } catch (err) {

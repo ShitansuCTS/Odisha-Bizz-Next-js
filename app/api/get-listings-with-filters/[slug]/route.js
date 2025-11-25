@@ -25,7 +25,7 @@ export async function GET(req, { params }) {
         const district = url.searchParams.get("district");
 
         if (!district || !slug) {
-            return new Response(JSON.stringify({ mainListings: [], related: [] }), { status: 400 });
+            return new Response(JSON.stringify({ mainListings: [], related: [], otherListings: [] }), { status: 400 });
         }
 
         // 1️⃣ Get main listings in the same district with the slug
@@ -35,7 +35,7 @@ export async function GET(req, { params }) {
         });
 
         if (!mainListings.length) {
-            return new Response(JSON.stringify({ mainListings: [], related: [] }), { status: 200 });
+            return new Response(JSON.stringify({ mainListings: [], related: [], otherListings: [] }), { status: 200 });
         }
 
         // 2️⃣ Extract keywords from titles and descriptions
@@ -65,9 +65,38 @@ export async function GET(req, { params }) {
             $or: keywordRegexArr,
         });
 
-        return new Response(JSON.stringify({ mainListings, related }), { status: 200 });
+
+        // 4️⃣ OTHER LISTINGS (Grouped by category)
+        const otherListings = await ProductListing.aggregate([
+            {
+                $match: {
+                    "address.district": { $regex: district, $options: "i" },
+                    categorySlug: { $ne: slug }
+                }
+            },
+            {
+                $group: {
+                    _id: { category: "$category", slug: "$categorySlug" },
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    category: "$_id.category",
+                    categorySlug: "$_id.slug",
+                    count: 1
+                }
+            }
+        ]);
+
+
+
+
+
+        return new Response(JSON.stringify({ mainListings, related, otherListings }), { status: 200 });
     } catch (err) {
         console.error("Error fetching listings:", err);
-        return new Response(JSON.stringify({ mainListings: [], related: [], error: "Server error" }), { status: 500 });
+        return new Response(JSON.stringify({ mainListings: [], related: [], otherListings: [], error: "Server error" }), { status: 500 });
     }
 }

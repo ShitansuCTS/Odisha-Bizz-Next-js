@@ -25,14 +25,22 @@ import {
 import useAuthStore from "@/store/authStore";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Loader from "../loader/Loader";
 
 
 
 export default function Navbar() {
-    const { isAuthenticated } = useAuthStore();
+    const { isAuthenticated, checkAuth } = useAuthStore();
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const router = useRouter()
+
+
+
+    useEffect(() => {
+        checkAuth();
+    }, []);
+
 
     // Scroll to top on route change (optional)
     useEffect(() => {
@@ -50,7 +58,7 @@ export default function Navbar() {
 
             if (res.ok) {
                 toast.success("Logged out successfully");
-                router.push("/login"); // redirect to login page
+                router.push("/admin/login"); // redirect to login page
             } else {
                 toast.error("Failed to logout");
             }
@@ -107,63 +115,47 @@ export default function Navbar() {
                             </Link>
                         </Button>
 
+
                         <div className="flex items-center gap-4">
-                            {/* {isAuthenticated && (
-                                <>
-                                    <Button
-                                        asChild
-                                        className="flex items-center gap-2 bg-[#249732] hover:bg-green-700 text-white rounded-full px-5 py-2 font-medium shadow-md transition-all"
-                                    >
-                                        <Link href="/listing/create">
-                                            <Plus className="w-5 h-5" /> Add Your One
-                                        </Link>
-                                    </Button>
+                            {isAuthenticated && (
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button className="cursor-pointer flex items-center gap-2 bg-[#012a7a] hover:bg-[#001846] text-white rounded-full px-6 py-2 shadow-md transition-all">
+                                            <User className="w-5 h-5" />
+                                            <span className="font-medium">Dashboard</span>
+                                            <ChevronDown className="w-4 h-4" />
+                                        </Button>
+                                    </DropdownMenuTrigger>
 
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button className="cursor-pointer flex items-center gap-2 bg-[#012a7a] hover:bg-[#001846] text-white rounded-full px-6 py-2 shadow-md transition-all">
-                                                <User className="w-5 h-5" />
-                                                <span className="font-medium">Dashboard</span>
-                                                <ChevronDown className="w-4 h-4" />
-                                            </Button>
-                                        </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end" className="mt-2 w-44 rounded-xl shadow-lg border bg-white">
+                                        <DropdownMenuLabel className="text-sm font-semibold text-gray-700">
+                                            Account
+                                        </DropdownMenuLabel>
+                                        <DropdownMenuSeparator />
 
-                                        <DropdownMenuContent align="end" className="mt-2 w-44 rounded-xl shadow-lg border bg-white">
-                                            <DropdownMenuLabel className="text-sm font-semibold text-gray-700">
-                                                Account
-                                            </DropdownMenuLabel>
-                                            <DropdownMenuSeparator />
+                                        <DropdownMenuItem asChild>
+                                            <Link href="/user/dashboard" className="flex items-center gap-2 text-gray-700 hover:text-blue-600">
+                                                <User className="w-4 h-4" /> My Dashboard
+                                            </Link>
+                                        </DropdownMenuItem>
 
-                                            <DropdownMenuItem asChild>
-                                                <Link href="/admin/dashboard" className="flex items-center gap-2 text-gray-700 hover:text-blue-600">
-                                                    <User className="w-4 h-4" /> My Dashboard
-                                                </Link>
-                                            </DropdownMenuItem>
+                                        <DropdownMenuItem asChild>
+                                            <Link href="/admin/forgot-password" className="flex items-center gap-2 text-gray-700 hover:text-blue-600">
+                                                <KeyRound className="w-4 h-4" /> Reset Password
+                                            </Link>
+                                        </DropdownMenuItem>
 
-                                            <DropdownMenuItem asChild>
-                                                <Link href="/admin/forgot-password" className="flex items-center gap-2 text-gray-700 hover:text-blue-600">
-                                                    <KeyRound className="w-4 h-4" /> Reset Password
-                                                </Link>
-                                            </DropdownMenuItem>
+                                        <DropdownMenuSeparator />
 
-                                            <DropdownMenuSeparator />
-
-                                            <DropdownMenuItem onClick={handleLogout} className="flex items-center gap-2 text-red-600 hover:text-red-700 cursor-pointer">
-                                                <LogOut className="w-4 h-4" /> Logout
-                                            </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
-                                </>
-                            )} */}
-
-                            {/* {!isAuthenticated && (
-                                <Button
-                                    onClick={() => alert("Go to login")}
-                                    className="bg-[#012a7a] hover:bg-[#012a7a] text-white rounded-full px-6 py-2 shadow-md flex items-center gap-2"
-                                >
-                                    <LogIn className="w-5 h-5" /> Sign In
-                                </Button>
-                            )} */}
+                                        <DropdownMenuItem
+                                            onClick={handleLogout}
+                                            className="flex items-center gap-2 text-red-600 hover:text-red-700 cursor-pointer"
+                                        >
+                                            <LogOut className="w-4 h-4" /> Logout
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            )}
                         </div>
                     </nav>
 

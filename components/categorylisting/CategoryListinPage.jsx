@@ -51,7 +51,7 @@ export default function CategoryListingPage({ categorySlug }) {
 
 
 
-    const { mainListings, related, loading, fetchResults } = useResultStore();
+    const { mainListings, related, otherListings, loading, fetchResults } = useResultStore();
     // ✅ Default district set to Khordha
     const [district, setDistrict] = useState("Khordha");
     const [selectedDistrict, setSelectedDistrict] = useState("Khordha");
@@ -341,40 +341,43 @@ export default function CategoryListingPage({ categorySlug }) {
                 </section>
 
                 {/* RIGHT SIDE — RELATED */}
-                {/* Sidebar */}
-                <aside className="w-full md:w-72 mt-8 md:mt-0">
-                    <div className="md:sticky md:top-18 flex flex-col gap-6">
-                        {/* Related */}
+                <aside className="w-full md:w-72 mt-8 md:mt-0 md:sticky md:top-20 h-max">
+                    <div className="flex flex-col gap-6">
+
+                        {/* Other Categories */}
                         <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
                             <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
                                 <h3 className="text-lg font-semibold text-neutral-800">
-                                    Related Categories
+                                    Other Categories
                                 </h3>
                                 <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">
-                                    {related.length}
+                                    {otherListings.length}
                                 </span>
                             </div>
 
-                            <ul className="flex flex-col divide-y divide-gray-100 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-                                {related.length === 0 ? (
-                                    <li className="px-4 py-3 text-muted-foreground text-sm">
-                                        No related categories found.
-                                    </li>
+                            <div className="divide-y divide-gray-100">
+                                {otherListings.length === 0 ? (
+                                    <p className="p-4 text-sm text-gray-500">No other categories found.</p>
                                 ) : (
-                                    related.map((cat, idx) => (
-                                        <li key={idx}>
-                                            <Link
-                                                to={`/category?district=${district}&category=${encodeURIComponent(
-                                                    cat
-                                                )}`}
-                                                className="block px-4 py-2.5 text-neutral-700 hover:bg-blue-50 hover:text-blue-700 text-sm font-medium transition-all"
-                                            >
-                                                {cat}
-                                            </Link>
-                                        </li>
+                                    otherListings.slice(0, 4).map((item) => (
+                                        <Link
+                                            href={`/category/${item.categorySlug}`}
+                                            key={item.categorySlug}
+                                            className="flex items-center justify-between p-4 hover:bg-gray-50 transition rounded-lg"
+                                        >
+                                            <div className="flex flex-col">
+                                                <span className="text-sm font-medium text-gray-800">
+                                                    {item.category.replace(/\b\w/g, (c) => c.toUpperCase())}
+                                                </span>
+                                            </div>
+
+                                            <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                                                {item.count} Listings
+                                            </span>
+                                        </Link>
                                     ))
                                 )}
-                            </ul>
+                            </div>
                         </div>
 
                         {/* Sponsored */}
@@ -397,6 +400,7 @@ export default function CategoryListingPage({ categorySlug }) {
                         </div>
                     </div>
                 </aside>
+
             </div>
         </>
     );
