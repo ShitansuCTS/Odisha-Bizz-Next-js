@@ -7,37 +7,37 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req) {
-    try {
-        await connectDB();
-        const { email } = await req.json();
+  try {
+    await connectDB();
+    const { email } = await req.json();
 
-        if (!email) {
-            return NextResponse.json({ message: "Email is required" }, { status: 400 });
-        }
+    if (!email) {
+      return NextResponse.json({ message: "Email is required" }, { status: 400 });
+    }
 
-        const user = await User.findOne({ email });
+    const user = await User.findOne({ email });
 
-        if (!user) {
-            return NextResponse.json({ message: "User not found" }, { status: 404 });
-        }
+    if (!user) {
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
+    }
 
-        // 🔐 Generate token
-        const resetToken = crypto.randomBytes(32).toString("hex");
-        const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
-        const tokenExpiry = Date.now() + 15 * 60 * 1000; // 15 Min
+    // 🔐 Generate token
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+    const tokenExpiry = Date.now() + 15 * 60 * 1000; // 15 Min
 
-        user.resetPasswordToken = hashedToken;
-        user.resetPasswordExpires = tokenExpiry;
-        await user.save({ validateBeforeSave: false });
+    user.resetPasswordToken = hashedToken;
+    user.resetPasswordExpires = tokenExpiry;
+    await user.save({ validateBeforeSave: false });
 
-        const resetLink = `${process.env.BASE_URL}/admin/reset-password/${resetToken}`;
+    const resetLink = `${process.env.BASE_URL}/admin/reset-password/${resetToken}`;
 
-        // 📧 Send Email using Resend
-        await resend.emails.send({
-            from: "Odisha Bizz <noreply@thetechtide.site>",
-            to: user.email,
-            subject: "Password Reset Request",
-            html: `
+    // 📧 Send Email using Resend
+    await resend.emails.send({
+      from: "Odisha Bizz <noreply@thetechtide.site>",
+      to: user.email,
+      subject: "Password Reset Request",
+      html: `
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -92,11 +92,11 @@ export async function POST(req) {
   </body>
   </html>
       `
-        });
+    });
 
-        return NextResponse.json({ message: "Reset link sent successfully!" });
+    return NextResponse.json({ message: "Reset link sent successfully!" });
 
-    } catch (err) {
-        return NextResponse.json({ message: "Internal Server Error", error: err.message }, { status: 500 });
-    }
+  } catch (err) {
+    return NextResponse.json({ message: "Internal Server Error", error: err.message }, { status: 500 });
+  }
 }

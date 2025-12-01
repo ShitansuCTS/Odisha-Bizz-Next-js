@@ -77,7 +77,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
       <div className="flex-1 overflow-y-auto py-6">
         <ul className="space-y-1 px-3">
           {links.map((link) => (
-            <li key={link.name} className="mb-2">
+            <li key={link.name} className="mb-3">
               {/* Main Menu Item */}
               <button
                 onClick={() =>
@@ -85,11 +85,10 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
                     ? toggleMenu(link.name)
                     : setActiveTab(link.name)
                 }
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-200 ${
-                  activeTab === link.name
-                    ? "bg-[#001846] text-white shadow-md"
-                    : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
-                }`}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-200 ${activeTab === link.name
+                  ? "bg-[#001846] text-white shadow-md"
+                  : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <span>{link.icon}</span>
@@ -119,11 +118,10 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
                       <li key={sub.name}>
                         <button
                           onClick={() => setActiveTab(sub.name)}
-                          className={`w-full flex items-center justify-between px-2 py-1.5 rounded-md text-sm transition ${
-                            activeTab === sub.name
-                              ? "bg-[#001846]/10 text-[#001846] font-medium"
-                              : "text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800"
-                          }`}
+                          className={`w-full flex items-center justify-between px-2 py-1.5 rounded-md text-sm transition ${activeTab === sub.name
+                            ? "bg-[#001846]/10 text-[#001846] font-medium"
+                            : "text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800"
+                            }`}
                         >
                           {sub.name}
                           {sub.badge && (
@@ -150,7 +148,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
         <>
           <Separator />
           <div className="mt-auto px-4 py-3 text-center text-xs text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} Safe Way
+            © {new Date().getFullYear()} Odisha Bizz v1.0.0
           </div>
         </>
       )}

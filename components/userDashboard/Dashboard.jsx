@@ -1,18 +1,26 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { toast } from "react-hot-toast";
+import { toast } from "react-hot-toast"; // or react-toastify if installed
+import axios from "axios";
+
+// Components
+import Sidebar from "@/components/user-dashboard-components/Sidebar";
+import AdminHeader from "@/components/dashboard/AdminHeader";
+import HomeDashboard from "@/components/user-dashboard-components/HomeDashboard";
+import AllListingWithFilter from "@/components/user-dashboard-components/AllListingWithFilter";
+import ProfilePage from "@/components/user-dashboard-components/ProfilePage";
+import AnalyticsDashboard from "@/components/dashboard/AnalyticsDashboard";
 import useAuthStore from "@/store/authStore";
-import { Clock } from "lucide-react";
-// import loader from "@/components/loader/Loader"
-import Loader from "@/components/loader/Loader";
 
 
-const UserDashboard = () => {
+export default function MainDashboard() {
+    const [activeTab, setActiveTab] = useState("Dashboard");
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
     const { checkAuth, role } = useAuthStore();
-    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         const verifyAccess = async () => {
@@ -20,33 +28,74 @@ const UserDashboard = () => {
 
             if (!auth) {
                 toast.error("You must login first!");
-                return router.push("/admin/login"); // normal login page
+                return router.push("/admin/login");
             }
 
-            if (role === "admin") {
-                toast.error("Admins cannot access this page!");
-                return router.push("/admin/dashboard");
+            if (role !== "user") {
+                toast.error("Access denied! Redirecting...");
+                return router.push("/admin/dashboard");     // redirect non-admins
             }
 
-            setLoading(false); // user is allowed
+            setLoading(false); // user is admin, allow access
         };
 
         verifyAccess();
     }, [router, checkAuth, role]);
 
-    if (loading) return <Loader />;
+    //   useEffect(() => {
+    //     const checkAuth = async () => {
+    //       setLoading(true);
+    //       try {
+    //         const res = await axios.get(`${API}/check-auth`, {
+    //           withCredentials: true,
+    //         });
+
+    //         if (res.status === 200) setLoading(false);
+    //       } catch (err) {
+    //         toast.error("Unauthorized access!");
+    //         router.push("/admin/login");
+    //       } finally {
+    //         setLoading(false);
+    //       }
+    //     };
+
+    //     checkAuth();
+    //   }, [router, API]);
+
+    const renderContent = () => {
+        switch (activeTab) {
+            case "All Listings":
+                return <AllListingWithFilter />;
+
+            case "Profile":
+                return <ProfilePage />;
+
+            case "Analytics":
+                return <AnalyticsDashboard />;
+            case "Revenue":
+                return <div>Revenue Tab</div>;
+            default:
+                return <HomeDashboard />;
+        }
+    };
+
+    if (loading) return <div>Loading...</div>;
 
     return (
-        <div className="flex flex-col items-center justify-center bg-red-50 p-20">
-            <div className="bg-white shadow-md rounded-xl p-10 flex flex-col items-center space-y-4">
-                <Clock className="w-12 h-12 text-blue-500 animate-pulse" />
-                <h1 className="text-2xl font-bold text-gray-800">User Dashboard</h1>
-                <p className="text-gray-500 text-center">
-                    Coming soon! Your dashboard content will appear here shortly.
-                </p>
+        <div className="flex h-screen bg-gray-50 overflow-hidden">
+            {/* Sidebar */}
+            <div className="w-64 fixed inset-y-0 left-0 z-30">
+                <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+            </div>
+
+            {/* Main Content */}
+            <div className="flex-1 flex flex-col ml-64">
+                {/* Topbar */}
+                <AdminHeader />
+
+                {/* Page Content */}
+                <main className="flex-1 overflow-y-auto p-6">{renderContent()}</main>
             </div>
         </div>
     );
-};
-
-export default UserDashboard;
+}

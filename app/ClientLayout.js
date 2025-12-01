@@ -10,15 +10,16 @@ import { Toaster } from "react-hot-toast"; // ← import Toaster
 export default function ClientLayout({ children }) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
+  const isUser = pathname.startsWith("/user");
 
   return (
     <>
-      {!isAdmin && <Navbar />}
+      {!isAdmin && !isUser && <Navbar />}
 
       <AuthProvider>{children}</AuthProvider>
 
-      {!isAdmin && <Footer />}
-      {!isAdmin && <ScrollToTopButton />}
+      {!isAdmin && !isUser && <Footer />}
+      {!isAdmin && !isUser && <ScrollToTopButton />}
       <Toaster />
       <Script
         chatbot_id="6911bdc4b446537655579714"

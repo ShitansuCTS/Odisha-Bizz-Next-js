@@ -66,11 +66,10 @@ const HomeDashboard = () => {
                   </span>
                 </div>
                 <Badge
-                  className={`${
-                    item.positive
+                  className={`${item.positive
                       ? "bg-green-100 text-green-700"
                       : "bg-red-100 text-red-700"
-                  } px-1.5 py-0.5 text-[10px] font-semibold rounded-full`}
+                    } px-1.5 py-0.5 text-[10px] font-semibold rounded-full`}
                 >
                   {item.positive ? (
                     <TrendingUp size={10} className="inline mr-1" />
@@ -96,7 +95,7 @@ const HomeDashboard = () => {
       {/* Dashboard Sections */}
       <AnalyticsDashboard />
       <AllListingWithFilter />
-      <Leads />
+      {/* <Leads /> */}
     </>
   );
 };

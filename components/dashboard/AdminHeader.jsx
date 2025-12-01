@@ -29,11 +29,28 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast"; // react-toastify can be replaced
+import useProfileStore from "@/store/profileStore";
+
 
 const AdminHeader = ({ activeTab }) => {
   const [theme, setTheme] = useState("light");
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+
+  const { profile, fetchProfile } = useProfileStore();
+
+  useEffect(() => {
+    if (!profile) fetchProfile(); // fetch profile if not loaded
+  }, [profile, fetchProfile]);
+
+  // Generate avatar URL dynamically
+  const avatarName = profile?.name || "Admin"; // fallback to Admin
+  const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+    avatarName
+  )}&background=5156be&color=fff`;
+
+
+
 
   // Theme toggling
   useEffect(() => {
@@ -146,9 +163,9 @@ const AdminHeader = ({ activeTab }) => {
         {/* Profile Dropdown */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="flex items-center gap-2 focus:outline-none">
+            <button className="flex items-center gap-2 focus:outline-none ">
               <img
-                src="https://ui-avatars.com/api/?name=Admin&background=5156be&color=fff"
+                src={avatarUrl}
                 alt="Profile"
                 loading="lazy"
                 className="w-9 h-9 rounded-full border"
@@ -180,7 +197,7 @@ const AdminHeader = ({ activeTab }) => {
         </DropdownMenu>
 
         {/* Dark/Light Toggle */}
-        <Button
+        {/* <Button
           variant="ghost"
           size="icon"
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -191,7 +208,7 @@ const AdminHeader = ({ activeTab }) => {
           ) : (
             <Sun className="w-5 h-5 text-yellow-400" />
           )}
-        </Button>
+        </Button> */}
       </div>
     </header>
   );
