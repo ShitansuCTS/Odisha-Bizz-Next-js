@@ -94,7 +94,7 @@ export default function HomeSearchHeader() {
                     Search across
                     <span className="text-blue-600 font-bold">1,000+</span>
 
-                    <div className="relative inline-block min-w-40 sm:min-w-[220px] h-[1.6em] overflow-hidden pt-1">
+                    <div className="relative inline-block min-w-40 sm:min-w-[220px] h-[1.6em] overflow-hidden ">
                         <AnimatePresence mode="wait">
                             <motion.span
                                 key={index}
@@ -114,7 +114,8 @@ export default function HomeSearchHeader() {
                 {/* FORM */}
                 <form
                     onSubmit={handleSubmit}
-                    className="mt-3 flex w-full md:w-[650px] border border-gray-200 rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg"
+                    className="mx-auto md:mx-0
+mt-3 flex w-[90%] sm:w-[400px] md:w-[650px] border border-gray-200 rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg "
                 >
                     {/* DISTRICT SELECT */}
                     <div className="relative flex items-center w-1/3 border-r border-gray-200 bg-white">
