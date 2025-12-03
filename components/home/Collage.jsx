@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const womenServices = [
     { name: "Hotels & Resorts", icon: "/icons/review.png", slug: "/category/hotels-and-resorts" },
-    { name: "Healthcare", icon: "/icons/Healthcare.png", slug: "/category/healthcare-services" },
+    { name: "Healthcare", icon: "/icons/healthcare.png", slug: "/category/healthcare-services" },
     { name: "Spa & Wellness", icon: "/icons/spa.png", slug: "/category/salons-spas-and-wellness" },
     { name: "Grocery & Supermarkets", icon: "/icons/grocery.png" },
     { name: "Electronics & Mobile Stores", icon: "/icons/electronics.png" },

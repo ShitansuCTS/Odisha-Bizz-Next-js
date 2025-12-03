@@ -20,6 +20,8 @@ export default function MainDashboard() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const { checkAuth, role } = useAuthStore();
+    const [isMobile, setIsMobile] = useState(false);
+
 
 
     useEffect(() => {
@@ -41,6 +43,15 @@ export default function MainDashboard() {
 
         verifyAccess();
     }, [router, checkAuth, role]);
+
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768); // Tailwind md breakpoint
+        handleResize(); // check on mount
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
 
     //   useEffect(() => {
     //     const checkAuth = async () => {
@@ -80,8 +91,56 @@ export default function MainDashboard() {
     };
 
     if (loading) return <div>Loading...</div>;
+    if (isMobile) {
+        return (
+            <div className="flex items-center justify-center h-screen bg-gray-50 px-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-6 text-center max-w-sm">
+
+                    {/* Icon */}
+                    <div className="mb-3">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-10 w-10 mx-auto text-blue-500"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"
+                            />
+                        </svg>
+                    </div>
+
+                    {/* Heading */}
+                    <h2 className="text-lg font-medium text-gray-800 mb-2 font-lucid">
+                        Desktop Mode Recommended
+                    </h2>
+
+                    {/* Subtext */}
+                    <p className="text-gray-500 mb-4 text-sm">
+                        Please open this dashboard on a desktop for the best experience.
+                    </p>
+
+                    {/* Back/Home button */}
+                    <button
+                        onClick={() => window.location.href = '/'}
+                        className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-md font-medium transition"
+                    >
+                        Back to Home
+                    </button>
+
+                </div>
+            </div>
+        );
+
+    }
+
 
     return (
+
         <div className="flex h-screen bg-gray-50 overflow-hidden">
             {/* Sidebar */}
             <div className="w-64 fixed inset-y-0 left-0 z-30">
