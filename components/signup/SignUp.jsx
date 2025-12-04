@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import Loader from "@/components/loader/Loader";
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 
@@ -99,9 +100,16 @@ export default function Signup() {
                 <div className="flex w-full max-w-5xl overflow-hidden rounded-2xl shadow-lg bg-white md:flex-row flex-col">
 
                     {/* Left Section */}
-                    <div className="w-full md:w-1/2 p-10">
+                    <div className="w-full md:w-1/2 p-4 md:p-10">
                         <div className="flex items-center gap-2 mb-8">
-                            <img src="/images/logo.png" alt="Logo" className="w-full h-10 object-contain" loading="lazy" />
+                            <Link href="/">
+                                <img
+                                    src="/images/logo.png"
+                                    alt="Logo"
+                                    className="w-full h-10 object-contain animate-fade-in"
+                                    loading="lazy"
+                                />
+                            </Link>
                         </div>
 
                         <h2 className="text-2xl font-bold text-gray-900 mb-1">Create an Account</h2>
@@ -209,6 +217,7 @@ export default function Signup() {
                                 </Label>
                             </div>
 
+
                             {/* Submit Button */}
                             <Button
                                 disabled={!isValid}
@@ -218,10 +227,17 @@ export default function Signup() {
                             </Button>
 
                         </form>
+
+                        <p className="text-center text-sm text-gray-500">
+                            Already have account !{" "}
+                            <Link href="/admin/login" className="text-blue-600 hover:underline">
+                                Login
+                            </Link>
+                        </p>
                     </div>
 
                     {/* Right Section */}
-                    <div className="w-full md:w-1/2 bg-blue-600 text-white flex flex-col items-center justify-center p-10 space-y-6">
+                    <div className="hidden md:flex w-full md:w-1/2 bg-blue-600 text-white flex flex-col items-center justify-center p-10 space-y-6">
                         <motion.img
                             src="/images/signup.png"
                             className="w-full h-80 object-contain"

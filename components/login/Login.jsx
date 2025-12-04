@@ -97,24 +97,26 @@ export default function Login() {
       {loading && <Loader />}
 
       <div className="flex min-h-screen bg-gray-100 items-center justify-center p-4">
-        <div className="flex w-full max-w-5xl overflow-hidden rounded-2xl shadow-lg bg-white md:flex-row flex-col">
+        <div className="flex w-full max-w-5xl overflow-hidden rounded-2xl shadow-lg bg-white p-0 md:flex-row flex-col">
 
           {/* Left */}
-          <div className="w-full md:w-1/2 p-10">
+          <div className="w-full md:w-1/2 p-6">
             <div className="flex items-center gap-2 mb-8">
-              <img
-                src="/images/logo.png"
-                alt="Logo"
-                className="w-full h-10 object-contain animate-fade-in"
-                loading="lazy"
-              />
+              <Link href="/">
+                <img
+                  src="/images/logo.png"
+                  alt="Logo"
+                  className="w-full h-10 object-contain animate-fade-in"
+                  loading="lazy"
+                />
+              </Link>
             </div>
 
             <h2 className="text-2xl font-bold text-gray-900 mb-1">
               Log in to your Account
             </h2>
             <p className="text-gray-500 mb-6">
-              Welcome back! Select method to log in:
+              Welcome back! Kindly Login
             </p>
 
             <div className="flex items-center justify-between gap-4 mb-6">
@@ -210,7 +212,7 @@ export default function Login() {
           </div>
 
           {/* Right */}
-          <div className="w-full md:w-1/2 bg-blue-600 text-white flex flex-col items-center justify-center p-10 space-y-6">
+          <div className="hidden md:flex w-full md:w-1/2 bg-blue-600 text-white flex-col items-center justify-center p-10 space-y-6">
             <motion.img
               src="/images/login.png"
               className="w-full h-80 object-contain"

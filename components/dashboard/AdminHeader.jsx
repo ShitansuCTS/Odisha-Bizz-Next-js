@@ -41,6 +41,8 @@ const AdminHeader = ({ activeTab }) => {
 
   useEffect(() => {
     if (!profile) fetchProfile(); // fetch profile if not loaded
+
+    console.log("The profile infor is  : ", profile)
   }, [profile, fetchProfile]);
 
   // Generate avatar URL dynamically
@@ -173,7 +175,8 @@ const AdminHeader = ({ activeTab }) => {
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Admin</DropdownMenuLabel>
+            <DropdownMenuLabel>  Hello {profile?.name || "Admin"}👋 !
+            </DropdownMenuLabel>
             <DropdownMenuSeparator />
 
             <DropdownMenuItem>

@@ -130,13 +130,28 @@ export default function MainDashboard() {
             Please open this dashboard on a desktop for the best experience.
           </p>
 
-          {/* Back/Home button */}
-          <button
-            onClick={() => window.location.href = '/'}
-            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-md font-medium transition"
-          >
-            Back to Home
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mt-3">
+
+            {/* Back/Home Button */}
+            <button
+              onClick={() => (window.location.href = "/")}
+              className="w-full sm:w-auto px-4 py-2 bg-gray-100 text-gray-800 hover:bg-gray-200 
+               text-sm rounded-lg font-medium transition border"
+            >
+              ← Back to Home
+            </button>
+
+            {/* List Now Button */}
+            <button
+              onClick={() => (window.location.href = "/listing/create")}
+              className="w-full sm:w-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white 
+               text-sm rounded-lg font-medium transition shadow"
+            >
+              + List Now
+            </button>
+
+          </div>
+
 
         </div>
       </div>
