@@ -117,7 +117,7 @@ export default function Navbar() {
 
 
                         <div className="flex items-center gap-4">
-                            {isAuthenticated && (
+                            {isAuthenticated ? (
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <Button className="cursor-pointer flex items-center gap-2 bg-[#012a7a] hover:bg-[#001846] text-white rounded-full px-6 py-2 shadow-md transition-all">
@@ -155,6 +155,15 @@ export default function Navbar() {
                                         </DropdownMenuItem>
                                     </DropdownMenuContent>
                                 </DropdownMenu>
+                            ) : (
+
+
+                                <Button
+                                    onClick={() => router.push("/admin/login")}
+                                    className="bg-[#012a7a] hover:bg-[#001846] text-white rounded-full px-6 py-2 shadow-md flex items-center gap-2"
+                                >
+                                    <LogIn className="w-5 h-5" /> Sign In
+                                </Button>
                             )}
                         </div>
                     </nav>
@@ -182,58 +191,52 @@ export default function Navbar() {
                                         Contact
                                     </Link>
 
-                                    {/* {isAuthenticated && (
-                                        <Button
-                                            onClick={() => setOpen(false)}
-                                            className="bg-[#249732] hover:bg-green-700 text-white rounded-full px-5 py-2 shadow-md flex items-center gap-2"
-                                        >
-                                            <Plus className="w-5 h-5 mr-1" /> Add Your One
-                                        </Button>
-                                    )}
-
                                     {isAuthenticated ? (
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
-                                                <Button className="bg-[#012a7a] hover:bg-[#001846] text-white rounded-full px-6 py-2 shadow-md flex items-center gap-2">
+                                                <Button className="cursor-pointer flex items-center gap-2 bg-[#012a7a] hover:bg-[#001846] text-white rounded-full px-6 py-2 shadow-md transition-all">
                                                     <User className="w-5 h-5" />
-                                                    Dashboard
+                                                    <span className="font-medium">Dashboard</span>
                                                     <ChevronDown className="w-4 h-4" />
                                                 </Button>
                                             </DropdownMenuTrigger>
 
-                                            <DropdownMenuContent align="end" className="mt-2 w-44 rounded-xl border bg-white shadow-lg">
+                                            <DropdownMenuContent align="end" className="mt-2 w-44 rounded-xl shadow-lg border bg-white">
                                                 <DropdownMenuLabel className="text-sm font-semibold text-gray-700">
                                                     Account
                                                 </DropdownMenuLabel>
                                                 <DropdownMenuSeparator />
 
                                                 <DropdownMenuItem asChild>
-                                                    <Link href="/admin/dashboard" className="flex items-center gap-2 text-gray-700 hover:text-[#b6985a]">
+                                                    <Link href="/user/dashboard" className="flex items-center gap-2 text-gray-700 hover:text-blue-600">
                                                         <User className="w-4 h-4" /> My Dashboard
                                                     </Link>
                                                 </DropdownMenuItem>
 
                                                 <DropdownMenuItem asChild>
-                                                    <Link href="/admin/forgot-password" className="flex items-center gap-2 text-gray-700 hover:text-[#b6985a]">
+                                                    <Link href="/admin/forgot-password" className="flex items-center gap-2 text-gray-700 hover:text-blue-600">
                                                         <KeyRound className="w-4 h-4" /> Reset Password
                                                     </Link>
                                                 </DropdownMenuItem>
 
                                                 <DropdownMenuSeparator />
 
-                                                <DropdownMenuItem onClick={handleLogout} className="flex items-center gap-2 text-red-600 hover:text-red-700 cursor-pointer">
+                                                <DropdownMenuItem
+                                                    onClick={handleLogout}
+                                                    className="flex items-center gap-2 text-red-600 hover:text-red-700 cursor-pointer"
+                                                >
                                                     <LogOut className="w-4 h-4" /> Logout
                                                 </DropdownMenuItem>
                                             </DropdownMenuContent>
                                         </DropdownMenu>
                                     ) : (
                                         <Button
-                                            onClick={() => alert("Go to login")}
-                                            className="bg-[#b6985a] hover:bg-[#a58648] text-white rounded-full px-6 py-2 shadow-md flex items-center gap-2"
+                                            onClick={() => router.push("/admin/login")}
+                                            className="bg-[#012a7a] hover:bg-[#001846] text-white rounded-full px-6 py-2 shadow-md flex items-center gap-2"
                                         >
                                             <LogIn className="w-5 h-5" /> Sign In
                                         </Button>
-                                    )} */}
+                                    )}
                                 </nav>
                             </SheetContent>
                         </Sheet>

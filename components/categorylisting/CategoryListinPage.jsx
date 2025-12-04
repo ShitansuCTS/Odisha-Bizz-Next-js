@@ -44,17 +44,59 @@ import {
 
 import Loader from "@/components/loader/Loader";
 import Link from "next/link";
+import Slider from "../slider/Slider";
 
 export default function CategoryListingPage({ categorySlug }) {
     const router = useRouter();
     const searchParams = useSearchParams();
 
+    // 🔥 Category-wise slider images
+    const sliderImageMap = {
+        "healthcare-services": [
+            "/images/healthcare.jpg",
+            "/images/health-2.jpg",
+            "/images/health-3.jpg",
+        ],
+        "real-estate-and-properties": [
+            "/images/realesat-2.webp",
+            "/images/realesat-3.webp",
+            "/images/real-estate.jpg",
+        ],
+        "salons-spas-and-wellness": [
+            "/images/spa.webp",
+            "/images/spa-2.webp",
+            "/images/spa-3.webp",
+        ],
+        "restaurants-and-cafes": [
+            "/images/cafe-2.webp",
+            "/images/cafe-3.webp",
+            "/images/restaurant-and-cafe.webp",
+        ],
+        "education-and-coaching": [
+            "/images/Education-Learning.avif",
+            "/images/education-2.webp",
+            "/images/education-3.webp",
+        ],
+        "travel-and-tourism-services": [
+            "/images/travel-2.webp",
+            "/images/travel-3.webp",
+            "/images/travel-and-tourism.webp",
+        ],
+        "hotels-and-resorts": [
+            "/images/hotel-and-resort.webp",
+            "/images/hotel-2.webp",
+            "/images/hotel-3.webp",
+        ],
+        // add more categories as needed
+    };
 
 
     const { mainListings, related, otherListings, loading, fetchResults } = useResultStore();
     // ✅ Default district set to Khordha
     const [district, setDistrict] = useState("Khordha");
     const [selectedDistrict, setSelectedDistrict] = useState("Khordha");
+    const sliderImages = sliderImageMap[categorySlug] || [];
+
 
 
     useEffect(() => {
@@ -88,10 +130,15 @@ export default function CategoryListingPage({ categorySlug }) {
         return badgeColors[idx];
     };
 
+
+
+
+
+
     return (
         <>
             {loading && <Loader />}
-
+            <Slider images={sliderImages} />
             {/* HEADER */}
             <div className="px-6 md:px-16 bg-gray-100 shadow-md py-3 flex items-center justify-between">
                 <h2 className="text-xl md:text-3xl font-bold text-gray-900">
@@ -99,6 +146,7 @@ export default function CategoryListingPage({ categorySlug }) {
                     <span className="text-green-600"> {categorySlug ? categorySlug.replace(/-/g, " ") : ""}</span>{" "}
                     in <span className="text-blue-600">Bhubaneswar</span>
                 </h2>
+
 
                 {/* <div className="flex gap-2">
                     <Select value={selectedDistrict} onValueChange={setSelectedDistrict}>
@@ -119,7 +167,7 @@ export default function CategoryListingPage({ categorySlug }) {
             </div>
 
             {/* MAIN + SIDEBAR */}
-            <div className="flex flex-col md:flex-row gap-10 py-4 px-6 md:px-14 w-full bg-gray-100 min-h-screen">
+            <div className="flex flex-col md:flex-row gap-10 py-4 px-2 md:px-14 w-full bg-gray-100 min-h-screen">
                 {/* LEFT SIDE LISTINGS */}
                 <section className="flex-1 flex flex-col gap-8">
                     {mainListings.length === 0 ? (
@@ -185,16 +233,31 @@ export default function CategoryListingPage({ categorySlug }) {
                                             </Tooltip>
                                         </TooltipProvider>
 
-                                        {/* Title & Rating */}
+                                        {/* Title & Verified Badge */}
                                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-1 sm:gap-0">
 
-                                            <div className="flex items-center gap-2">
+                                            <div className="flex items-center gap-2 w-full">
+                                                {/* Index */}
                                                 <span className="text-lg font-bold text-black">{idx + 1}.</span>
-                                                <h2 className="text-xl sm:text-2xl font-semibold text-neutral-900 wrap-break-words">
-                                                    {item.title}
+
+                                                {/* Title + Verified badge */}
+                                                <h2 className="flex items-center gap-1 font-semibold text-neutral-900 
+                   text-lg sm:text-2xl flex-1">
+                                                    {/* Title text */}
+                                                    <span className="wrap-break-words sm:whitespace-normal">
+                                                        {item.title}
+                                                    </span>
+
+                                                    {/* Verified badge */}
+                                                    {item.status === "pending" && (
+                                                        <span className="shrink-0 flex items-center justify-center w-5 h-5  rounded-full ml-1">
+                                                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" class="text-blue-600" height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M10.007 2.10377C8.60544 1.65006 7.08181 2.28116 6.41156 3.59306L5.60578 5.17023C5.51004 5.35763 5.35763 5.51004 5.17023 5.60578L3.59306 6.41156C2.28116 7.08181 1.65006 8.60544 2.10377 10.007L2.64923 11.692C2.71404 11.8922 2.71404 12.1078 2.64923 12.308L2.10377 13.993C1.65006 15.3946 2.28116 16.9182 3.59306 17.5885L5.17023 18.3942C5.35763 18.49 5.51004 18.6424 5.60578 18.8298L6.41156 20.407C7.08181 21.7189 8.60544 22.35 10.007 21.8963L11.692 21.3508C11.8922 21.286 12.1078 21.286 12.308 21.3508L13.993 21.8963C15.3946 22.35 16.9182 21.7189 17.5885 20.407L18.3942 18.8298C18.49 18.6424 18.6424 18.49 18.8298 18.3942L20.407 17.5885C21.7189 16.9182 22.35 15.3946 21.8963 13.993L21.3508 12.308C21.286 12.1078 21.286 11.8922 21.3508 11.692L21.8963 10.007C22.35 8.60544 21.7189 7.08181 20.407 6.41156L18.8298 5.60578C18.6424 5.51004 18.49 5.35763 18.3942 5.17023L17.5885 3.59306C16.9182 2.28116 15.3946 1.65006 13.993 2.10377L12.308 2.64923C12.1078 2.71403 11.8922 2.71404 11.692 2.64923L10.007 2.10377ZM6.75977 11.7573L8.17399 10.343L11.0024 13.1715L16.6593 7.51465L18.0735 8.92886L11.0024 15.9999L6.75977 11.7573Z"></path></svg>
+                                                        </span>
+                                                    )}
                                                 </h2>
                                             </div>
 
+                                            {/* Rating */}
                                             <TooltipProvider>
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
@@ -210,6 +273,7 @@ export default function CategoryListingPage({ categorySlug }) {
                                             </TooltipProvider>
 
                                         </div>
+
 
                                         <Separator className="mb-2" />
 
