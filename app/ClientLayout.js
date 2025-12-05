@@ -11,15 +11,16 @@ export default function ClientLayout({ children }) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
   const isUser = pathname.startsWith("/user");
+  const thankyou = pathname.startsWith("/thanks");
 
   return (
     <>
-      {!isAdmin && !isUser && <Navbar />}
+      {!isAdmin && !isUser && !thankyou && <Navbar />}
 
       <AuthProvider>{children}</AuthProvider>
 
-      {!isAdmin && !isUser && <Footer />}
-      {!isAdmin && !isUser && <ScrollToTopButton />}
+      {!isAdmin && !isUser && !thankyou && <Footer />}
+      {!isAdmin && !isUser && !thankyou && <ScrollToTopButton />}
       <Toaster />
       <Script
         chatbot_id="6911bdc4b446537655579714"
