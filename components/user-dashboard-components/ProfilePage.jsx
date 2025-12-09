@@ -76,12 +76,15 @@ import useProfileStore from "@/store/profileStore";
 import { Edit2, Key } from "lucide-react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+
 
 export default function ProfilePage() {
     const { profile, loading, error, fetchProfile } = useProfileStore();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [formData, setFormData] = useState({ name: "", email: "" });
     const [updating, setUpdating] = useState(false);
+    const router = useRouter()
 
     useEffect(() => {
         if (!profile) fetchProfile();
@@ -191,6 +194,7 @@ export default function ProfilePage() {
                             Update Profile
                         </button>
                         <button
+                            onClick={() => router.push('/admin/forgot-password')}
                             className="flex items-center justify-center gap-2 flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition"
                         >
                             <Key className="w-4 h-4" />
