@@ -170,7 +170,7 @@ export default function Signup() {
                                         required
                                         className="pl-9"
                                     />
-                                    <span className="absolute right-3 top-5 cursor-pointer text-gray-500"
+                                    <span className="absolute right-3 top-2.5 cursor-pointer text-gray-500"
                                         onClick={() => setShowPassword(!showPassword)}>
                                         {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                                     </span>

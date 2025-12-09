@@ -17,7 +17,7 @@ export default function ProfilePage() {
   const avatarLetter = profile.name ? profile.name.charAt(0).toUpperCase() : "?";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 p-6 flex justify-center items-start">
+    <div className="min-h-screen bg-linear-to-b from-indigo-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 p-6 flex justify-center items-start">
       <div className="bg-white/90 dark:bg-gray-800/90 shadow-lg rounded-2xl p-8 w-full max-w-5xl flex flex-wrap md:flex-nowrap gap-8 transition-all">
 
         {/* Avatar Section */}

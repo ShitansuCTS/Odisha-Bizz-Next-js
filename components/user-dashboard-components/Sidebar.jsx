@@ -8,15 +8,21 @@ import {
     FileText,
     ChevronRight,
     ChevronDown,
+    User,
+    PlusSquare,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
     const [openMenus, setOpenMenus] = useState({});
     const [collapsed, setCollapsed] = useState(false);
+    const router = useRouter()
+
 
     const toggleMenu = (menuName) => {
         setOpenMenus((prev) => ({
@@ -37,9 +43,14 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
             subItems: [{ name: "Analytics" }],
         },
         {
-            name: "Pages",
-            icon: <FileText size={18} />,
-            subItems: [{ name: "Profile" }],
+            name: "Add listing",
+            icon: <PlusSquare size={18} />,
+            path: "/listing/create"
+
+        },
+        {
+            name: "Profile",
+            icon: <User size={18} />,
         },
     ];
 
@@ -75,11 +86,16 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
                         <li key={link.name} className="mb-2">
                             {/* Main Menu Item */}
                             <button
-                                onClick={() =>
+                                onClick={() => {
+                                    if (link.path) {
+                                        router.push(link.path)
+                                        return;
+                                    }
+
                                     link.subItems
                                         ? toggleMenu(link.name)
-                                        : setActiveTab(link.name)
-                                }
+                                        : setActiveTab(link.name);
+                                }}
                                 className={`w-full flex items-center justify-between px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-200 ${activeTab === link.name
                                     ? "bg-[#001846] text-white shadow-md"
                                     : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"

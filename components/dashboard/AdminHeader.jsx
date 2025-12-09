@@ -49,7 +49,7 @@ const AdminHeader = ({ activeTab }) => {
   const avatarName = profile?.name || "Admin"; // fallback to Admin
   const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(
     avatarName
-  )}&background=5156be&color=fff`;
+  )}&background=4F46E5&color=fff`;
 
 
 
@@ -110,7 +110,7 @@ const AdminHeader = ({ activeTab }) => {
         />
 
         {/* Options Dropdown */}
-        <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+        {/* <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
@@ -149,7 +149,59 @@ const AdminHeader = ({ activeTab }) => {
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
+        </DropdownMenu> */}
+
+
+        <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              className="flex items-center gap-2 text-gray-700 hover:text-[#5156be] transition"
+            >
+              Actions
+              <ChevronDown className="w-4 h-4" />
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent
+            align="end"
+            className="w-56 p-2 rounded-xl shadow-xl border border-gray-100 bg-white dark:bg-gray-900 animate-in fade-in-80 slide-in-from-top-2"
+          >
+            <DropdownMenuLabel className="text-xs px-2 py-1 uppercase tracking-wider font-semibold text-gray-400">
+              Quick Actions
+            </DropdownMenuLabel>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuItem asChild>
+              <Link href="/listing/create" className="flex items-center gap-3 px-2 py-2 group rounded-md transition">
+                <span className="p-1.5 bg-blue-50 text-blue-600 rounded-md group-hover:bg-blue-600 group-hover:text-white transition">
+                  <PlusCircle size={18} />
+                </span>
+                <span className="text-sm font-medium">Create Listing</span>
+              </Link>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem asChild>
+              <Link href="/categories" className="flex items-center gap-3 px-2 py-2 rounded-md group transition">
+                <span className="p-1.5 bg-indigo-50 text-indigo-600 rounded-md group-hover:bg-indigo-600 group-hover:text-white transition">
+                  <List size={18} />
+                </span>
+                <span className="text-sm font-medium">View Listings</span>
+              </Link>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem asChild>
+              <Link href="/" className="flex items-center gap-3 px-2 py-2 rounded-md group transition">
+                <span className="p-1.5 bg-green-50 text-green-700 rounded-md group-hover:bg-green-600 group-hover:text-white transition">
+                  <Home size={18} />
+                </span>
+                <span className="text-sm font-medium">Back to Home</span>
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
         </DropdownMenu>
+
 
 
         {/* Notifications */}
@@ -170,7 +222,7 @@ const AdminHeader = ({ activeTab }) => {
                 src={avatarUrl}
                 alt="Profile"
                 loading="lazy"
-                className="w-9 h-9 rounded-full border"
+                className="w-10 h-10 rounded-full border "
               />
             </button>
           </DropdownMenuTrigger>

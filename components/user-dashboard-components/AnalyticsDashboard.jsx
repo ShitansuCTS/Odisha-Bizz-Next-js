@@ -62,81 +62,100 @@ export default function AnalyticsDashboard() {
             <p className="text-center py-10 text-gray-500">Loading analytics...</p>
         );
 
+
+
+
+
     return (
         <div className="space-y-6 lg:mt-14">
             <div className="flex items-center gap-3">
                 <span className="text-2xl font-bold text-slate-800">Analytics Dashboard</span>
             </div>
-
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-                {/* Listings by Category */}
-                <Card className="shadow-lg border border-gray-100 rounded-xl">
-                    <CardHeader>
-                        <CardTitle className="text-lg font-semibold text-[#5156be]">
-                            Listings by Category
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="h-64">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={analytics.byCategory}>
-                                <XAxis
-                                    dataKey="_id"
-                                    tick={{ fontSize: 12, fill: "#4b5563" }}
-                                    interval={0}
-                                    angle={-15}
-                                    textAnchor="end"
-                                    tickFormatter={(value) => value?.split(" ")[0]}
-                                />
-                                <YAxis allowDecimals={false} tick={{ fill: "#4b5563" }} />
-                                <Tooltip />
-                                <Bar dataKey="count" radius={[4, 4, 0, 0]}>
-                                    {analytics.byCategory.map((entry, index) => (
-                                        <Cell
-                                            key={index}
-                                            fill={COLORS[index % COLORS.length]}
-                                            stroke="#fff"
-                                            strokeWidth={1}
+            {
+                analytics.byCategory.length === 0 &&
+                    analytics.byStatus.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center h-[30vh] space-y-3">
+                        <AlertTriangle className="h-12 w-12 text-yellow-500" />
+                        <p className="text-gray-500 text-lg font-semibold">
+                            No analytics found
+                        </p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                        {/* Listings by Category */}
+                        <Card className="shadow-lg border border-gray-100 rounded-xl">
+                            <CardHeader>
+                                <CardTitle className="text-lg font-semibold text-[#5156be]">
+                                    Listings by Category
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="h-64">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={analytics.byCategory}>
+                                        <XAxis
+                                            dataKey="_id"
+                                            tick={{ fontSize: 12, fill: "#4b5563" }}
+                                            interval={0}
+                                            angle={-15}
+                                            textAnchor="end"
+                                            tickFormatter={(value) => value?.split(" ")[0]}
                                         />
-                                    ))}
-                                </Bar>
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </CardContent>
-                </Card>
+                                        <YAxis allowDecimals={false} tick={{ fill: "#4b5563" }} />
+                                        <Tooltip />
+                                        <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+                                            {analytics.byCategory.map((entry, index) => (
+                                                <Cell
+                                                    key={index}
+                                                    fill={COLORS[index % COLORS.length]}
+                                                    stroke="#fff"
+                                                    strokeWidth={1}
+                                                />
+                                            ))}
+                                        </Bar>
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </CardContent>
+                        </Card>
 
-                {/* Listings by Status */}
-                <Card className="shadow-lg border border-gray-100 rounded-xl">
-                    <CardHeader>
-                        <CardTitle className="text-lg font-semibold text-[#5156be]">
-                            Listings by Status
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="h-64 flex items-center justify-center">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <PieChart>
-                                <Pie
-                                    data={analytics.byStatus}
-                                    dataKey="count"
-                                    nameKey="_id"
-                                    outerRadius={80}
-                                    label={({ name, percent }) =>
-                                        `${name} (${(percent * 100).toFixed(0)}%)`
-                                    }
-                                >
-                                    {analytics.byStatus.map((entry) => {
-                                        let color = "#34d399";
-                                        if (entry._id === "pending") color = "#facc15";
-                                        else if (entry._id === "inactive") color = "#f87171";
-                                        return <Cell key={entry._id} fill={color} />;
-                                    })}
-                                </Pie>
-                                <Legend verticalAlign="bottom" />
-                                <Tooltip />
-                            </PieChart>
-                        </ResponsiveContainer>
-                    </CardContent>
-                </Card>
-            </div>
+                        {/* Listings by Status */}
+                        <Card className="shadow-lg border border-gray-100 rounded-xl">
+                            <CardHeader>
+                                <CardTitle className="text-lg font-semibold text-[#5156be]">
+                                    Listings by Status
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="h-64 flex items-center justify-center">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <PieChart>
+                                        <Pie
+                                            data={analytics.byStatus}
+                                            dataKey="count"
+                                            nameKey="_id"
+                                            outerRadius={80}
+                                            label={({ name, percent }) =>
+                                                `${name} (${(percent * 100).toFixed(0)}%)`
+                                            }
+                                        >
+                                            {analytics.byStatus.map((entry) => {
+                                                let color = "#34d399";
+                                                if (entry._id === "pending") color = "#facc15";
+                                                else if (entry._id === "inactive") color = "#f87171";
+                                                return <Cell key={entry._id} fill={color} />;
+                                            })}
+                                        </Pie>
+                                        <Legend verticalAlign="bottom" />
+                                        <Tooltip />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                            </CardContent>
+                        </Card>
+                    </div>
+                )
+            }
+
+
+
+
         </div>
     );
 }

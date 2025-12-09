@@ -77,10 +77,8 @@ export default function MainDashboard() {
         switch (activeTab) {
             case "All Listings":
                 return <AllListingWithFilter />;
-
             case "Profile":
                 return <ProfilePage />;
-
             case "Analytics":
                 return <AnalyticsDashboard />;
             case "Revenue":

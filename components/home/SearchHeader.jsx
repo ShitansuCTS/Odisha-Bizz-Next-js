@@ -70,6 +70,8 @@ export default function HomeSearchHeader() {
         return () => clearInterval(interval);
     }, []);
 
+
+
     // 👉 FORM SUBMIT (ONLY WORKS IF USER ENTERS EXACT CATEGORY)
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -83,6 +85,7 @@ export default function HomeSearchHeader() {
             toast.error("Please select a valid category!");
         }
     };
+
 
     return (
         <div className="flex flex-col md:flex-row items-start justify-between py-4 md:pl-18 md:pt-6 gap-6 md:gap-0">
@@ -139,7 +142,7 @@ mt-3 flex w-[90%] sm:w-[400px] md:w-[650px] border border-gray-200 rounded-lg ov
                             placeholder="Search categories…"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            onBlur={() => setTimeout(() => setSuggestions([]), 150)}
+                            // onBlur={() => setTimeout(() => setSuggestions([]), 150)}
                             className="w-full py-2 sm:py-3 px-3 sm:px-4 pr-20 text-gray-700 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-500"
                         />
 
@@ -156,7 +159,7 @@ mt-3 flex w-[90%] sm:w-[400px] md:w-[650px] border border-gray-200 rounded-lg ov
                 {/* DROPDOWN */}
                 <div className="relative w-full">
                     {suggestions.length > 0 && (
-                        <ul className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 sm:w-96 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden z-50">
+                        <ul onMouseDown={(e) => e.preventDefault()} className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 sm:w-96 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden z-50">
                             <div className="px-4 py-2 text-xs text-gray-400 uppercase tracking-wide border-b bg-gray-50">
                                 Suggestions
                             </div>
@@ -194,7 +197,7 @@ mt-3 flex w-[90%] sm:w-[400px] md:w-[650px] border border-gray-200 rounded-lg ov
             </div>
 
             {/* RIGHT SIDE DOWNLOAD BUTTONS */}
-            <div className="flex flex-col items-center md:pr-18 lg:mt-10 w-full md:w-auto">
+            {/* <div className="flex flex-col items-center md:pr-18 lg:mt-10 w-full md:w-auto">
                 <div className="flex gap-3 items-center mt-2 sm:mt-4">
                     <button
                         onClick={() => toast.error("Android App is coming soon!")}
@@ -210,7 +213,7 @@ mt-3 flex w-[90%] sm:w-[400px] md:w-[650px] border border-gray-200 rounded-lg ov
                         <img src="/images/getapp_googleplay.avif" alt="Play Store" className="h-9 sm:h-10" />
                     </button>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 
