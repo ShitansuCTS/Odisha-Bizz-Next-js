@@ -10,7 +10,7 @@ const womenServices = [
     { name: "Spa & Wellness", icon: "/icons/spa.png", slug: "/category/salons-spas-and-wellness" },
     { name: "Grocery & Supermarkets", icon: "/icons/grocery.png" },
     { name: "Electronics & Mobile Stores", icon: "/icons/electronics.png" },
-    { name: "Home Cleaning ", icon: "/icons/home-clean.png", slug: "/cleaning" },
+    { name: "Home Cleaning ", icon: "/icons/home-clean.png", },
     { name: "Laundry & Dry Cleaning", icon: "/icons/laundry.png" },
     { name: "Hotels & Resorts", icon: "/icons/review.png" },
 ];
@@ -23,7 +23,7 @@ const menServices = [
     { name: "Photography & Videography", icon: "/icons/photography.png" },
     { name: "Event Planning & Decoration", icon: "/icons/event.png" },
     { name: "Restaurants & Cafes", icon: "/icons/restaurant.png", slug: "/category/restaurants-and-cafes" },
-    { name: "Hotels & Resorts", icon: "/icons/review.png" }
+    { name: "Hotels & Resorts", icon: "/icons/review.png", slug: "/category/hotels-and-resorts" }
 ];
 
 export default function Collage() {
@@ -42,14 +42,14 @@ export default function Collage() {
             <div
                 className="flex flex-col items-center text-center hover:scale-105 transition cursor-pointer"
             >
-               <div className="relative w-10 h-10 sm:w-14 sm:h-14 mb-2">
-                <Image
-                    src={item.icon}
-                    alt={item.name}
-                    fill
-                    className="object-contain"
-                />
-            </div>
+                <div className="relative w-10 h-10 sm:w-14 sm:h-14 mb-2">
+                    <Image
+                        src={item.icon}
+                        alt={item.name}
+                        fill
+                        className="object-contain"
+                    />
+                </div>
                 <p className="text-sm font-medium">{item.name}</p>
             </div>
         );

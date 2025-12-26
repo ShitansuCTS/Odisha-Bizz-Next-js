@@ -1,8 +1,8 @@
 import CreateListing from "@/components/createListing/CreateListing";
 
 export const metadata = {
-    title: "Create Listing || Odisha Bizz",
-    description: "Sign up to create your account and access all features of our platform.",
+     title: "Add Your Property Listing || Odisha Bizz",
+    description: "List your hotel, restaurant, travel service, or property on Odisha Bizz and reach customers across Odisha.",
 };
 
 

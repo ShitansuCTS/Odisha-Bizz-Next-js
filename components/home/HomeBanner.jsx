@@ -44,7 +44,7 @@ const categories = [
     title: "Travel & Tourism Services",
     description: "Hospitals, Clinics & Doctors",
     img: "/images/travel-and-tourism.webp",
-    slug: "healthcare",
+    slug: "healthcare-services",
   },
   {
     title: "Restaurants & Cafes",
@@ -125,7 +125,7 @@ export default function HomeBanner() {
           <Link key={i} href={`/category/${cat.slug}`} className="block">
             <motion.div
               whileHover={{ scale: 1.04, y: -4 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
               className="relative h-[180px] md:h-[182px] rounded-2xl overflow-hidden shadow-md cursor-pointer group"
             >
               <img

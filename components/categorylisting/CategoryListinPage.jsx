@@ -141,11 +141,23 @@ export default function CategoryListingPage({ categorySlug }) {
             <Slider images={sliderImages} />
             {/* HEADER */}
             <div className="px-6 md:px-16 bg-gray-100 shadow-md py-3 flex items-center justify-between">
-                <h2 className="text-xl md:text-3xl font-bold text-gray-900">
+                {/* <h2 className="text-xl md:text-3xl font-bold text-gray-900">
                     Top 10{" "}
                     <span className="text-green-600"> {categorySlug ? categorySlug.replace(/-/g, " ") : ""}</span>{" "}
                     in <span className="text-blue-600">Bhubaneswar</span>
+                </h2> */}
+                <h2 className="text-xl md:text-3xl font-bold text-gray-900">
+                    Top 10{" "}
+                    <span className="text-green-600">
+                        {categorySlug
+                            ? categorySlug
+                                .replace(/-/g, " ")
+                                .replace(/\b\w/g, (char) => char.toUpperCase())
+                            : ""}
+                    </span>{" "}
+                    in <span className="text-blue-900">Bhubaneswar</span>
                 </h2>
+
 
 
                 {/* <div className="flex gap-2">
@@ -203,7 +215,7 @@ export default function CategoryListingPage({ categorySlug }) {
                                                 width={100}
                                                 src={item.imageUrl}
                                                 alt={item.title}
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-full object-contain"
                                             />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center text-gray-400 italic">
@@ -273,14 +285,10 @@ export default function CategoryListingPage({ categorySlug }) {
                                             </TooltipProvider>
 
                                         </div>
-
-
                                         <Separator className="mb-2" />
-
                                         <p className="text-muted-foreground text-sm text-justify">
                                             {item.description}
                                         </p>
-
                                         {/* Contact */}
                                         <div className="mt-4 flex flex-col gap-3 text-sm">
                                             {item.phone && (
@@ -409,7 +417,7 @@ export default function CategoryListingPage({ categorySlug }) {
                     <div className="flex flex-col gap-6">
 
                         {/* Other Categories */}
-                        <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+                        <div className="bg-white border border-gray-200 rounded-sm shadow-sm overflow-hidden">
                             <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
                                 <h3 className="text-lg font-semibold text-neutral-800">
                                     Other Categories
@@ -435,7 +443,7 @@ export default function CategoryListingPage({ categorySlug }) {
                                                 </span>
                                             </div>
 
-                                            <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                                            <span className="text-xs bg-blue-900 text-white px-2 py-1 rounded-full">
                                                 {item.count} Listings
                                             </span>
                                         </Link>
@@ -445,8 +453,8 @@ export default function CategoryListingPage({ categorySlug }) {
                         </div>
 
                         {/* Sponsored */}
-                        <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden p-2">
-                            <h4 className="text-sm text-neutral-600 font-medium mb-2 px-2">
+                        <div className="bg-white border border-gray-200 rounded-sm shadow-sm overflow-hidden p-2">
+                            <h4 className="text-lg font-semibold text-neutral-800  mb-2 px-2">
                                 Sponsored
                             </h4>
                             <a

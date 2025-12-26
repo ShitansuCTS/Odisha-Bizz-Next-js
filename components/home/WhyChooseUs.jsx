@@ -33,10 +33,10 @@ export default function WhyChooseUs() {
         <section className="py-10 px-6 md:px-12 lg:px-24 bg-white">
             {/* Header */}
             <div className="max-w-3xl mx-auto text-center mb-10">
-                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 leading-snug">
+                <h2 className="text-3xl font-bold text-center mb-2 text-gray-900">
                     Why Choose Us
                 </h2>
-                <p className="text-gray-600 mt-3 text-base md:text-lg">
+                <p className="text-center text-gray-600 mb-8">
                     Discover the reasons why clients trust us to deliver exceptional value and results.
                 </p>
             </div>

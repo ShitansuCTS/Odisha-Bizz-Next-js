@@ -28,7 +28,7 @@ export default function Faq() {
 
                 {/* RIGHT FAQ CONTENT */}
                 <div className="flex flex-col h-full justify-center">
-                    <h2 className="text-2xl md:text-4xl font-bold text-gray-900 leading-snug mb-6">
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-snug mb-6">
                         Frequently Asked Questions
                     </h2>
 
@@ -38,9 +38,10 @@ export default function Faq() {
                             value="item-1"
                             className="border border-gray-200 bg-white rounded-xl shadow-sm"
                         >
-                            <AccordionTrigger className="px-4 py-3 text-lg font-medium">
+                            <AccordionTrigger className="px-4 py-3 text-lg font-semibold text-gray-900">
                                 What is Odisha Bizz?
                             </AccordionTrigger>
+
                             <AccordionContent className="px-4 pb-4 text-gray-600">
                                 Odisha Bizz is a service and business discovery platform helping
                                 people find trusted professionals, vendors, and local businesses
