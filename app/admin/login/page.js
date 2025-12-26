@@ -3,8 +3,8 @@ import Login from "@/components/login/Login";
 
 
 export const metadata = {
-    title: "Lohin to your account | Login",
-    description: "Sign up to create your account and access all features of our platform.",
+    title: "Login to Your Account | Odisha Bizz",
+    description: "Access your Odisha Bizz account to manage listings, view dashboards, and update your business details.",
 };
 
 

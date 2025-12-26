@@ -54,21 +54,16 @@ const About = () => {
 
           {/* Right: Content */}
           <div className="w-full md:w-1/2 space-y-6">
-            <Badge
+            {/* <Badge
               variant="secondary"
               className="uppercase tracking-wider font-semibold text-sm px-4 py-2 rounded-full bg-indigo-500 text-white shadow-md block sm:inline-block sm:mx-0 mx-auto text-center hover:bg-indigo-700 hover:text-white transition-colors duration-300"
             >
               About Odisha Bizz
-            </Badge>
+            </Badge> */}
 
-
-
-
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight text-center md:text-left px-4">
+            <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold leading-tight text-center md:text-left  text-gray-900">
               Showcase & Manage Your Properties Effortlessly
             </h2>
-
-
 
             <p className="text-muted-foreground leading-relaxed text-justify">
               Odisha Bizz is a comprehensive platform designed for property owners,

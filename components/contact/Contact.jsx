@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Briefcase, HelpCircle, Users, Wrench } from "lucide-react";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
+import Image from "next/image";
 import {
     Select,
     SelectContent,
@@ -205,7 +206,7 @@ const Contact = () => {
 
                         {/* Contact Info */}
                         <div className="w-full md:w-1/2 flex flex-col justify-center space-y-8">
-                            <div className="flex items-start gap-4 border-b pb-6">
+                            {/* <div className="flex items-start gap-4 border-b pb-6">
                                 <MapPin className="w-8 h-8 text-[#249732] mt-1" />
                                 <div>
                                     <h4 className="font-semibold">Our Address</h4>
@@ -238,7 +239,20 @@ const Contact = () => {
                                     <p className="text-muted-foreground text-sm">Mon–Fri from 8am to 5pm.</p>
                                     <p className="text-sm mt-1 font-medium">+1 (555) 000-0000</p>
                                 </div>
-                            </div>
+                            </div> */}
+                            {/* <img
+                                src="/images/contact-us-img.jpeg" // change path as needed
+                                alt="Our Location"
+                                className="w-full h-full object-cover rounded-lg"
+                            /> */}
+                            <Image
+                                src="/images/contact-us-img.jpeg"
+                                alt="Our Location"
+                                className="w-full h-[500px] object-cover rounded-lg"
+                                width={500}
+                                height={500}
+                            />
+
                         </div>
                     </div>
                 </div>

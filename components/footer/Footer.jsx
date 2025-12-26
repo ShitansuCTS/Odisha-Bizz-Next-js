@@ -11,6 +11,8 @@ import {
   FaArrowRight,
 } from "react-icons/fa6";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <footer className="w-full bg-[#0b2c71] text-white relative">
@@ -44,7 +46,7 @@ const Footer = () => {
             className="h-12 object-contain"
             loading="lazy"
           />
-          <p className="text-white text-sm leading-relaxed ">
+          <p className="text-white text-sm leading-relaxed text-justify">
             <span className="font-semibold text-white">Odisha Bizz</span> is
             your one-stop platform to explore, connect, and list businesses and
             properties across Odisha. Discover the right opportunities for your
@@ -52,29 +54,54 @@ const Footer = () => {
           </p>
         </div>
 
+        {/* 4️⃣ Contact Info */}
+        <div className="flex flex-col gap-3">
+          <h4 className="font-semibold text-white mb-2">Quick Links</h4>
+          <Link href="/" className="hover:text-[#249732] transition">
+            Home
+          </Link>
+          <Link href="/about" className="hover:text-[#249732] transition">
+            About
+          </Link>
+          <Link href="/categories" className="hover:text-[#249732] transition">
+            Our Categories
+          </Link>
+          <Link href="/category/privacy-policy" className="hover:text-[#249732] transition">
+            Privacy Policy
+          </Link>
+          <Link href="/category/terms-and-conditions" className="hover:text-[#249732] transition">
+            Terms & Conditions
+          </Link>
+          <Link href="/contact" className="hover:text-[#249732] transition">
+            Contact Us
+          </Link>
+
+
+        </div>
+
         {/* 2️⃣ & 3️⃣ Categories (split into two columns) */}
         <div className="grid grid-cols-2 gap-6 md:col-span-2">
           {/* Left Categories */}
           <div className="flex flex-col gap-3">
             <h4 className="font-semibold text-white mb-2">Categories</h4>
-            <a href="#" className="hover:text-[#249732] transition">
+            <Link href="/category/real-estate-and-properties" className="hover:text-[#249732] transition">
               Real Estate
-            </a>
-            <a href="#" className="hover:text-[#249732] transition">
+            </Link>
+            <Link href="/category/healthcare-services" className="hover:text-[#249732] transition">
               Healthcare
-            </a>
-            <a href="#" className="hover:text-[#249732] transition">
-              Finance & Banking
-            </a>
-            <a href="#" className="hover:text-[#249732] transition">
-              Retail & E-commerce
-            </a>
-            <a href="#" className="hover:text-[#249732] transition">
-              Hospitality & Tourism
-            </a>
-            <a href="#" className="hover:text-[#249732] transition">
-              Manufacturing & Industrial
-            </a>
+            </Link>
+            <Link href="/category/travel-and-tourism-services" className="hover:text-[#249732] transition">
+              Travel & Tourism
+            </Link>
+            <Link href="/category/hotels-and-resorts" className="hover:text-[#249732] transition">
+              Hotels & Resorts
+            </Link>
+            <Link href="/category/restaurants-and-cafes" className="hover:text-[#249732] transition">
+              Restaurants and Cafes
+            </Link>
+            <Link href="/category/education-and-coaching" className="hover:text-[#249732] transition">
+              Education & Coaching
+            </Link>
           </div>
 
           {/* Right Categories */}
@@ -83,58 +110,30 @@ const Footer = () => {
               Categories
             </h4>{" "}
             {/* alignment fix */}
-            <a href="#" className="hover:text-[#249732] transition">
-              Energy & Utilities
-            </a>
-                 <a href="#" className="hover:text-[#249732] transition">
+
+            <Link href="#" className="hover:text-[#249732] transition">
               Agriculture & Food
-            </a>
-               <a href="#" className="hover:text-[#249732] transition">
+            </Link>
+
+            <Link href="#" className="hover:text-[#249732] transition">
               Education & Learning
-            </a>
-                    <a href="#" className="hover:text-[#249732] transition">
-              Technology & Innovation
-            </a>
-                <a href="#" className="hover:text-[#249732] transition">
+            </Link>
+
+            <Link href="#" className="hover:text-[#249732] transition">
               Media & Entertainment
-            </a>
-            <a href="#" className="hover:text-[#249732] transition">
+            </Link>
+
+            <Link href="/category/salons-spas-and-wellness" className="hover:text-[#249732] transition">
+              Salons, Spas, & Wellness
+            </Link>
+
+            <Link href="#" className="hover:text-[#249732] transition">
+              Technology & Innovation
+            </Link>
+            <Link href="#" className="hover:text-[#249732] transition">
               Transportation & Logistics
-            </a>
-        
-       
-         
-    
-          </div>
-        </div>
+            </Link>
 
-        {/* 4️⃣ Contact Info */}
-        <div className="flex flex-col gap-3">
-          <h4 className="font-semibold text-white mb-2">Contact</h4>
-
-          <div className="flex items-start gap-2">
-            <FaMapMarkerAlt className="text-[#249732] mt-1" />
-            <p>Bhubaneswar, Odisha</p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <FaPhoneAlt className="text-[#249732]" />
-            <a
-              href="tel:+919876543210"
-              className="hover:text-[#249732] transition"
-            >
-              +91 9876543210
-            </a>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <FaEnvelope className="text-[#249732]" />
-            <a
-              href="mailto:info@odishabizz.com"
-              className="hover:text-[#249732] transition"
-            >
-              info@odishabizz.com
-            </a>
           </div>
         </div>
       </div>
@@ -143,7 +142,7 @@ const Footer = () => {
       <div className="bg-[#081d53] text-gray-300 text-sm py-4 px-4 md:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
           <span>
-            &copy; Copyright 2025 Odisha Biz. All Rights Reserved || Developed
+            &copy; Copyright 2025 Odisha Bizz. All Rights Reserved || Powered
             By{" "}
             <strong>
               <a
@@ -152,7 +151,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-white hover:text-[#249732] transition-colors duration-300 font-semibold"
               >
-                Odisha Biz
+                Odisha Bizz
               </a>
             </strong>
           </span>

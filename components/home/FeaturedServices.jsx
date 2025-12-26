@@ -82,7 +82,7 @@ export const services = [
   //   slug: "/energy",
   // },
   {
-    title: "Travel & Tourism Services",
+    title: "Travel & Tourism ",
     description: "Delivering efficiency across every mile.",
     // author: "Lorem Ipsum",
     icon: <Truck className="w-5 h-5 text-[#249732]" />,
