@@ -32,7 +32,11 @@ export async function GET(req, { params }) {
         const mainListings = await ProductListing.find({
             categorySlug: slug,
             "address.district": { $regex: district, $options: "i" },
+            status: "active",
         });
+
+        console.log("mainListings", mainListings);
+
 
         if (!mainListings.length) {
             return new Response(JSON.stringify({ mainListings: [], related: [], otherListings: [] }), { status: 200 });

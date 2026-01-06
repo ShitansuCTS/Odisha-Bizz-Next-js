@@ -6,16 +6,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 
 const cities = [
-    { name: "Chennai", image: "/images/cities/chennai.webp" },
-    { name: "Mumbai", image: "/images/cities/mumbai.webp" },
-    { name: "Pune", image: "/images/cities/pune.webp" },
-    { name: "Ahemdabad", image: "/images/cities/ahemdabad.webp" },
-    { name: "Delhi", image: "/images/cities/delhi.webp" },
-    { name: "Jaipur", image: "/images/cities/jaipur.webp" },
-    { name: "Kolkata", image: "/images/cities/kolkata.webp" },
-    { name: "Hyderabad", image: "/images/cities/hyderabad.webp" },
-    { name: "Agra", image: "/images/cities/agra.webp" },
-    { name: "Lucknow", image: "/images/cities/lucknow.webp" },
+    { name: "Sambalpur", image: "/images/cities/sambalpur.webp" },
+    { name: "Berhermpur", image: "/images/cities/berhermpur.webp" },
+    { name: "Balasore", image: "/images/cities/balasore.webp" },
+    { name: "Rourkela", image: "/images/cities/rourkela.webp" },
+    { name: "Cuttack", image: "/images/cities/cuttack.webp" },
+    { name: "Sambalpur", image: "/images/cities/sambalpur.webp" },
+    { name: "Berhermpur", image: "/images/cities/berhermpur.webp" },
+    { name: "Balasore", image: "/images/cities/balasore.webp" },
+    { name: "Rourkela", image: "/images/cities/rourkela.webp" },
+    { name: "Cuttack", image: "/images/cities/cuttack.webp" },
 
 ];
 
