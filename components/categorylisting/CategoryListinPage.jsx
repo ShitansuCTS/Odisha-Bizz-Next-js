@@ -464,7 +464,7 @@ export default function CategoryListingPage({ categorySlug }) {
                                 className="block overflow-hidden rounded-xl"
                             >
                                 <img
-                                    src="https://akam.cdn.jdmagicbox.com/images/icontent/analytics/Google_ads_banner_300x250_17_06_2025.png"
+                                    src="/images/sponsored-img.webp"
                                     alt="Advertisement"
                                     className="w-full h-auto rounded-xl hover:scale-105 transition-transform duration-300"
                                 />
