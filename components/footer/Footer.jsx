@@ -142,7 +142,7 @@ const Footer = () => {
       <div className="bg-[#081d53] text-gray-300 text-sm py-4 px-4 md:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
           <span>
-            &copy; Copyright 2025 Odisha Bizz. All Rights Reserved || Powered
+            &copy; Copyright 2026 Odisha Bizz. All Rights Reserved || Powered
             By{" "}
             <strong>
               <a

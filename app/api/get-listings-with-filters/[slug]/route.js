@@ -35,7 +35,7 @@ export async function GET(req, { params }) {
             status: "active",
         });
 
-        console.log("mainListings", mainListings);
+        // console.log("mainListings", mainListings);
 
 
         if (!mainListings.length) {

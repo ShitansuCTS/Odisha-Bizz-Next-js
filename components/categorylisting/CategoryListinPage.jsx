@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import ListingSkeleton from "@/components/loader/ListingSkeleton"
 import Image from "next/image";
 
 import {
@@ -137,7 +138,7 @@ export default function CategoryListingPage({ categorySlug }) {
 
     return (
         <>
-            {loading && <Loader />}
+            {/* {loading && <Loader />} */}
             <Slider images={sliderImages} />
             {/* HEADER */}
             <div className="px-6 md:px-16 bg-gray-100 shadow-md py-3 flex items-center justify-between">
@@ -182,7 +183,9 @@ export default function CategoryListingPage({ categorySlug }) {
             <div className="flex flex-col md:flex-row gap-10 py-4 px-2 md:px-14 w-full bg-gray-100 min-h-screen">
                 {/* LEFT SIDE LISTINGS */}
                 <section className="flex-1 flex flex-col gap-8">
-                    {mainListings.length === 0 ? (
+                    {loading ? (
+                        [...Array(6)].map((_, i) => <ListingSkeleton key={i} />)
+                    ) : mainListings.length === 0 ? (
                         <div className="flex flex-col items-center justify-center py-16 text-center bg-white rounded-lg border border-gray-200">
                             <Image
                                 src="/images/data-not-found.png"
