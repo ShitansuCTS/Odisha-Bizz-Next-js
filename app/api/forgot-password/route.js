@@ -34,7 +34,7 @@ export async function POST(req) {
 
     // 📧 Send Email using Resend
     await resend.emails.send({
-      from: "Odisha Bizz <noreply@thetechtide.site>",
+      from: "Odisha Biz <noreply@odishabiz.com>",
       to: user.email,
       subject: "Password Reset Request",
       html: `
@@ -45,8 +45,8 @@ export async function POST(req) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Reset</title>
   </head>
-  <body style="margin:0;padding:0;font-family:Arial,sans-serif;background-color:#f4f4f4;">
-    <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding: 20px 0;">
+  <body style="margin:0;padding:0;font-family:Arial,sans-serif;background-color:#012a7a;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#012a7a;padding: 20px 0;">
       <tr>
         <td align="center">
           <!-- Main Container -->
@@ -55,7 +55,7 @@ export async function POST(req) {
             <!-- Header -->
             <tr>
               <td style="background-color:#b6985a;padding:30px;text-align:center;color:#ffffff;font-size:24px;font-weight:bold;">
-                Odisha Bizz
+                Odisha Biz
               </td>
             </tr>
             
@@ -66,7 +66,7 @@ export async function POST(req) {
                 <p>We received a request to reset your password. Click the button below to set a new password:</p>
                 
                 <p style="text-align:center;margin:30px 0;">
-                  <a href="${resetLink}" style="padding:12px 25px;background:#b6985a;color:white;text-decoration:none;border-radius:5px;font-weight:bold;display:inline-block;">
+                  <a href="${resetLink}" style="padding:12px 25px; background:#012a7a; color:white;text-decoration:none;border-radius:5px;font-weight:bold;display:inline-block;">
                     Reset Password
                   </a>
                 </p>
@@ -80,8 +80,8 @@ export async function POST(req) {
             <!-- Footer -->
             <tr>
               <td style="background-color:#f9f9f9;padding:20px;text-align:center;color:#777777;font-size:12px;">
-                &copy; ${new Date().getFullYear()} Odisha Bizz. All rights reserved.<br>
-                <a href="https://thetechtide.site" style="color:#b6985a;text-decoration:none;">Visit our website</a>
+                &copy; ${new Date().getFullYear()} Odisha Biz. All rights reserved.<br>
+                <a href="https://odishabiz.com" style="color:#b6985a;text-decoration:none;">Visit our website</a>
               </td>
             </tr>
           </table>
