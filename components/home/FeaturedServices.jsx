@@ -39,7 +39,7 @@ export const services = [
     // author: "Lorem Ipsum",
     icon: <HeartPulse className="w-5 h-5 text-[#249732]" />,
     image: "/images/healthcare.jpg",
-    slug: "healthcare",
+    slug: "healthcare-services",
   },
   // {
   //   title: "Finance & Banking",

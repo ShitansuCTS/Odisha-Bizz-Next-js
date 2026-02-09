@@ -22,8 +22,13 @@ export default function ClientLayout({ children }) {
       {!isAdmin && !isUser && !thankyou && <Footer />}
       {!isAdmin && !isUser && !thankyou && <ScrollToTopButton />}
       <Toaster />
-      <Script
+      {/* <Script
         chatbot_id="6911bdc4b446537655579714"
+        data-type="default"
+        src="https://app.thinkstack.ai/bot/thinkstackai-loader.min.js"
+      /> */}
+      <Script
+        chatbot_id="6989a5f7d28295b189047345"
         data-type="default"
         src="https://app.thinkstack.ai/bot/thinkstackai-loader.min.js"
       />

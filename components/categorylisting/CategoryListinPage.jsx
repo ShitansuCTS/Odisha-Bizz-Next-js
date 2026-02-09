@@ -461,7 +461,7 @@ export default function CategoryListingPage({ categorySlug }) {
                                 Sponsored
                             </h4>
                             <a
-                                href="https://www.google.com"
+                                href="/admin/login"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="block overflow-hidden rounded-xl"
