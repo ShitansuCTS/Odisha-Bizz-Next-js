@@ -42,12 +42,12 @@ const Footer = () => {
         <div className="flex flex-col gap-4 items-start">
           <img
             src="/images/logo.png"
-            alt="Odisha Bizz"
+            alt="Odisha Biz"
             className="h-12 object-contain"
             loading="lazy"
           />
           <p className="text-white text-sm leading-relaxed text-justify">
-            <span className="font-semibold text-white">Odisha Bizz</span> is
+            <span className="font-semibold text-white">Odisha Biz</span> is
             your one-stop platform to explore, connect, and list businesses and
             properties across Odisha. Discover the right opportunities for your
             growth and visibility in just a few clicks.
@@ -66,10 +66,10 @@ const Footer = () => {
           <Link href="/categories" className="hover:text-[#249732] transition">
             Our Categories
           </Link>
-          <Link href="/category/privacy-policy" className="hover:text-[#249732] transition">
+          <Link href="/privacy-policy" className="hover:text-[#249732] transition">
             Privacy Policy
           </Link>
-          <Link href="/category/terms-and-conditions" className="hover:text-[#249732] transition">
+          <Link href="/terms-and-conditions" className="hover:text-[#249732] transition">
             Terms & Conditions
           </Link>
           <Link href="/contact" className="hover:text-[#249732] transition">
@@ -142,7 +142,7 @@ const Footer = () => {
       <div className="bg-[#081d53] text-gray-300 text-sm py-4 px-4 md:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
           <span>
-            &copy; Copyright 2026 Odisha Bizz. All Rights Reserved || Powered
+            &copy; Copyright 2026 Odisha Biz. All Rights Reserved || Powered
             By{" "}
             <strong>
               <a
@@ -151,7 +151,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-white hover:text-[#249732] transition-colors duration-300 font-semibold"
               >
-                Odisha Bizz
+                Odisha Biz
               </a>
             </strong>
           </span>

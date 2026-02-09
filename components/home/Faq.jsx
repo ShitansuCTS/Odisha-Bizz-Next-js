@@ -18,7 +18,7 @@ export default function Faq() {
                     <div className="h-full rounded-2xl overflow-hidden shadow-xl">
                         <Image
                             src="/images/faq.webp"
-                            alt="Odisha Bizz Support"
+                            alt="Odisha Biz Support"
                             width={700}
                             height={700}
                             className="w-full h-full object-cover"
@@ -39,11 +39,11 @@ export default function Faq() {
                             className="border border-gray-200 bg-white rounded-xl shadow-sm"
                         >
                             <AccordionTrigger className="px-4 py-3 text-lg font-semibold text-gray-900">
-                                What is Odisha Bizz?
+                                What is Odisha Biz?
                             </AccordionTrigger>
 
                             <AccordionContent className="px-4 pb-4 text-gray-600">
-                                Odisha Bizz is a service and business discovery platform helping
+                                Odisha Biz is a service and business discovery platform helping
                                 people find trusted professionals, vendors, and local businesses
                                 across Odisha.
                             </AccordionContent>
@@ -67,11 +67,11 @@ export default function Faq() {
                             className="border border-gray-200 bg-white rounded-xl shadow-sm"
                         >
                             <AccordionTrigger className="px-4 py-3 text-lg font-medium">
-                                Is Odisha Bizz free to use?
+                                Is Odisha Biz free to use?
                             </AccordionTrigger>
                             <AccordionContent className="px-4 pb-4 text-gray-600">
                                 Yes, browsing, searching, and contacting service providers on
-                                Odisha Bizz is completely free for users.
+                                Odisha Biz is completely free for users.
                             </AccordionContent>
                         </AccordionItem>
 

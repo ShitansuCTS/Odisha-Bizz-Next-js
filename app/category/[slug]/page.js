@@ -1,6 +1,6 @@
 import CategoryListinPage from "@/components/categorylisting/CategoryListinPage";
 // export const metadata = {
-//     title: "Contact Us || Odisha Bizz",
+//     title: "Contact Us || Odisha Biz",
 //     description: "Sign up to create your account and access all features of our platform.",
 // };
 
@@ -14,10 +14,10 @@ export async function generateMetadata({ params }) {
         .join(" ");
 
     return {
-        title: `${categoryName} | Odisha Bizz`,
+        title: `${categoryName} | Odisha Biz`,
         description: `Explore the best ${categoryName} listings, services, and businesses across Odisha. Discover detailed information and connect with providers near you.`,
         openGraph: {
-            title: `${categoryName} | Odisha Bizz`,
+            title: `${categoryName} | Odisha Biz`,
             description: `Find top-rated ${categoryName} listings and services in Odisha.`,
             url: `/category/${slug}`,
             type: "website",

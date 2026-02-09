@@ -81,13 +81,13 @@ export default function Navbar() {
                         <Link href="/" className="flex items-center gap-2">
                             <img
                                 src="/images/logo.png"
-                                alt="Odisha Bizz"
+                                alt="Odisha Biz"
                                 loading="lazy"
                                 className="h-[50px] w-[140px] object-contain hidden sm:block"
                             />
                             <img
                                 src="/images/logo.png"
-                                alt="Odisha Bizz"
+                                alt="Odisha Biz"
                                 loading="lazy"
                                 className="h-10 object-contain sm:hidden"
                             />

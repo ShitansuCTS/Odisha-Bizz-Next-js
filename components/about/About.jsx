@@ -45,7 +45,7 @@ const About = () => {
             <Image
               src="/images/about-1st.jpg"
               loading="lazy"
-              alt="Odisha Bizz team working"
+              alt="Odisha Biz team working"
               className="rounded-xl shadow-lg w-full object-cover"
               width={300}
               height={300}
@@ -58,7 +58,7 @@ const About = () => {
               variant="secondary"
               className="uppercase tracking-wider font-semibold text-sm px-4 py-2 rounded-full bg-indigo-500 text-white shadow-md block sm:inline-block sm:mx-0 mx-auto text-center hover:bg-indigo-700 hover:text-white transition-colors duration-300"
             >
-              About Odisha Bizz
+              About Odisha Biz
             </Badge> */}
 
             <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold leading-tight text-center md:text-left  text-gray-900">
@@ -66,7 +66,7 @@ const About = () => {
             </h2>
 
             <p className="text-muted-foreground leading-relaxed text-justify">
-              Odisha Bizz is a comprehensive platform designed for property owners,
+              Odisha Biz is a comprehensive platform designed for property owners,
               real estate agents, and businesses to list, showcase, and manage their
               properties efficiently. Connect with potential clients, highlight your
               listings with rich media, and reach a wider audience across Bhubaneswar
@@ -76,7 +76,7 @@ const About = () => {
 
             <div>
               <h3 className="font-semibold text-lg mb-4">
-                Why Choose Odisha Bizz
+                Why Choose Odisha Biz
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[

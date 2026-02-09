@@ -159,7 +159,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
                 <>
                     <Separator />
                     <div className="mt-auto px-4 py-3 text-center text-xs text-gray-500 dark:text-gray-400">
-                        © {new Date().getFullYear()} Odisha Bizz v1.0.0
+                        © {new Date().getFullYear()} Odisha Biz v1.0.0
                     </div>
 
                 </>

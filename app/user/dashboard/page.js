@@ -4,7 +4,7 @@ import UserDashboard from "@/components/userDashboard/Dashboard";
 
 
 export const metadata = {
-    title: "User Dashboard || Odisha Bizz",
+    title: "User Dashboard || Odisha Biz",
     description: "Sign up to create your account and access all features of our platform.",
 };
 

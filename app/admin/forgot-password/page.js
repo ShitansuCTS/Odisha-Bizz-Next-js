@@ -1,8 +1,8 @@
 import Forgotpassword from "@/components/forgotpass/Forgotpassword";
 
 export const metadata = {
-    title: "Forgot Password | Odisha Bizz",
-    description: "Reset your Odisha Bizz account password securely and regain access to your account.",
+    title: "Forgot Password | Odisha Biz",
+    description: "Reset your Odisha Biz account password securely and regain access to your account.",
 };
 
 

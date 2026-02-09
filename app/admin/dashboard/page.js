@@ -4,7 +4,7 @@ import Dashboard from "@/components/dashboard/Dashboard";
 
 
 export const metadata = {
-    title: "Admin Panel || Odisha Bizz",
+    title: "Admin Panel || Odisha Biz",
     description: "Sign up to create your account and access all features of our platform.",
 };
 

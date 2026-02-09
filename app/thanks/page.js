@@ -1,7 +1,7 @@
 import Thankyou from "@/components/thankyou/Thankyou";
 
 export const metadata = {
-    title: "Thank You || Odisha Bizz",
+    title: "Thank You || Odisha Biz",
     description: "Varify your account and access all features of our platform.",
 };
 

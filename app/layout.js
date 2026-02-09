@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Welcome to Odisha Bizz || Properties & Local Business Listings",
+  title: "Welcome to Odisha Biz || Properties & Local Business Listings",
   description: "Explore verified property and business listings in Odisha including hotels, restaurants, travel, and commercial spaces.",
   icons: { icon: "/logo-fav.ico" },
 };

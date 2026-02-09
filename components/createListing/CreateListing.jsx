@@ -491,7 +491,7 @@ export default function CreateListing() {
                                                             <Label className="font-medium text-slate-700">Business email <span className="text-red-500 ml-0.5">*</span></Label>
                                                             <Input
                                                                 name="email"
-                                                                placeholder="info@odishabizz.com"
+                                                                placeholder="info@odishabiz.com"
                                                                 value={formData.email}
                                                                 onChange={handleChange}
                                                             />
