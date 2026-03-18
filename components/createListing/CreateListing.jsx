@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, ArrowRight, ArrowLeft, ImageIcon, UploadCloud } from "lucide-react";
 import Loader from "@/components/loader/Loader";
 import { toast } from "react-hot-toast";
-
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -79,19 +78,24 @@ export default function CreateListing() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+
+    
     // ================ FETCH STATES ================
     useEffect(() => {
         const fetchStates = async () => {
             try {
-                const res = await fetch(
-                    "https://www.india-location-hub.in/api/locations/states"
-                );
+                const res = await fetch("/api/states");
                 const data = await res.json();
-                if (data?.success && data.data?.states) setStates(data.data.states);
+
+                if (data?.success && data.data?.states) {
+                    setStates(data.data.states);
+                }
+
             } catch (err) {
                 console.error("states fetch error", err);
             }
         };
+
         fetchStates();
     }, []);
 
@@ -101,9 +105,7 @@ export default function CreateListing() {
         setDistricts([]);
         try {
             const res = await fetch(
-                `https://www.india-location-hub.in/api/locations/districts?state=${encodeURIComponent(
-                    stateName
-                )}`
+                `/api/districts?states=${encodeURIComponent(stateName)}`
             );
             const data = await res.json();
             if (data?.success && data.data?.districts) setDistricts(data.data.districts);
