@@ -46,9 +46,6 @@ export async function POST(req) {
             imagePublicId = uploadResult.public_id;
         }
 
-
-
-
         // ✅ NEW: get logged-in user ID from JWT cookie
         const cookieStore = await cookies(); // await the cookies()
         const token = cookieStore.get("token")?.value;
@@ -82,7 +79,6 @@ export async function POST(req) {
         });
 
         await newListing.save();
-        // console.log("New listing created:", newListing);
         return NextResponse.json({ success: true, listing: newListing }, { status: 201 });
     } catch (err) {
         console.error("Error creating listing:", err);
