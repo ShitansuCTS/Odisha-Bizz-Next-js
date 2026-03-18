@@ -14,6 +14,7 @@ import Leads from "@/components/dashboard/Leads";
 import ProfilePage from "@/components/dashboard/ProfilePage";
 import AnalyticsDashboard from "@/components/dashboard/AnalyticsDashboard";
 import useAuthStore from "@/store/authStore";
+import GoogleSync from "./GoogleSync";
 
 
 export default function MainDashboard() {
@@ -91,12 +92,15 @@ export default function MainDashboard() {
         return <AnalyticsDashboard />;
       case "Revenue":
         return <div>Revenue Tab</div>;
+      case "Google Integration":
+        return <GoogleSync />;
       default:
         return <HomeDashboard />;
     }
   };
 
   if (loading) return <div>Loading...</div>;
+
   if (isMobile) {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-50 px-4">

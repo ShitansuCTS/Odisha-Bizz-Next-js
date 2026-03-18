@@ -29,6 +29,12 @@ const productListingSchema = new mongoose.Schema(
         imageUrl: String, // ✅ for Cloudinary URL
         imagePublicId: String, // ✅ for Cloudinary ID
 
+        // Google Place ID
+        googlePlaceId: { type: String },
+        googleRating: { type: Number },
+        googleReviewsCount: { type: Number },
+        googleLastUpdated: { type: Date },
+
         status: {
             type: String,
             enum: ["active", "pending", "inactive"],

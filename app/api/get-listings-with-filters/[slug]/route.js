@@ -33,7 +33,8 @@ export async function GET(req, { params }) {
             categorySlug: slug,
             "address.district": { $regex: district, $options: "i" },
             status: "active",
-        });
+        })
+            .sort({ googleRating: -1, googleReviewsCount: -1 });
 
         // console.log("mainListings", mainListings);
 
