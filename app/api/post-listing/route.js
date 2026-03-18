@@ -64,6 +64,30 @@ export async function POST(req) {
             return NextResponse.json({ success: false, message: "Invalid token" }, { status: 403 });
         }
 
+
+        let googlePlaceId = "";
+
+        if (title && address?.district && address?.state) {
+            try {
+                const query = `${title} ${address.district} ${address.state}`;
+
+                const res = await fetch(
+                    `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(query)}&inputtype=textquery&fields=place_id&key=${process.env.GOOGLE_API_KEY}`
+                );
+
+                const data = await res.json();
+
+                if (data.candidates && data.candidates.length > 0) {
+                    googlePlaceId = data.candidates[0].place_id;
+                }
+            } catch (err) {
+                console.error("Place ID fetch error:", err);
+            }
+        }
+
+
+
+
         const newListing = new ProductListing({
             title,
             description,
@@ -75,8 +99,11 @@ export async function POST(req) {
             imageUrl,
             imagePublicId,
             owner: userId, // 👈 attach logged-in user
-
+            googlePlaceId
         });
+
+
+        console.log("The new listing Data is : ", newListing);
 
         await newListing.save();
         return NextResponse.json({ success: true, listing: newListing }, { status: 201 });
