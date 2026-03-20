@@ -124,16 +124,16 @@ const AllListingWithFilter = () => {
             formData.append("phone", selectedListing.phone);
 
             // Address (nested)
-            formData.append("address[district]", selectedListing.address?.district || "");
-            formData.append("address[state]", selectedListing.address?.state || "");
-            formData.append("address[pincode]", selectedListing.address?.pincode || "");
+            formData.append("address", JSON.stringify(selectedListing.address));
 
             // Social media (nested)
-            formData.append("socialMedia[facebook]", selectedListing.socialMedia?.facebook || "");
-            formData.append("socialMedia[instagram]", selectedListing.socialMedia?.instagram || "");
-            formData.append("socialMedia[twitter]", selectedListing.socialMedia?.twitter || "");
-            formData.append("socialMedia[linkedin]", selectedListing.socialMedia?.linkedin || "");
-            formData.append("socialMedia[website]", selectedListing.socialMedia?.website || "");
+            formData.append("socialMedia", JSON.stringify(selectedListing.socialMedia));
+
+            //google review information
+            formData.append("googlePlaceId", selectedListing.googlePlaceId || "");
+            formData.append("googleLastUpdated", selectedListing.googleLastUpdated || "");
+            formData.append("googleRating", selectedListing.googleRating || "");
+            formData.append("googleReviewsCount", selectedListing.googleReviewsCount || "");
 
             // Image (only if user selected new)
             if (selectedListing.image instanceof File) {
@@ -399,165 +399,231 @@ const AllListingWithFilter = () => {
                 </CardContent>
             </Card>
 
-            {/* Edit Sheet */}
+
+
+            {/* Sidebar sheet is opening  */}
             <Sheet open={open} onOpenChange={setOpen}>
-                <SheetContent side="right" className="w-full max-w-lg bg-white shadow-xl rounded-xs overflow-hidden">
-                    <SheetHeader className="px-6 py-4 border-b">
-                        <SheetTitle className="text-[#5156be] text-2xl font-semibold">Edit Listing</SheetTitle>
-                        <SheetDescription className="text-gray-500 mt-1 text-sm">
-                            Update the listing details below and click save when finished.
+                <SheetContent
+                    side="right"
+                    className="w-[40vw]! max-w-none! bg-white shadow-2xl overflow-y-auto"
+                >
+                    <SheetHeader className="px-6 py-5 border-b bg-gray-50">
+                        <SheetTitle className="text-2xl font-semibold text-[#5156be]">
+                            Edit Listing
+                        </SheetTitle>
+                        <SheetDescription className="text-gray-500 text-sm">
+                            Update listing details and save changes.
                         </SheetDescription>
                     </SheetHeader>
 
                     {selectedListing && (
                         <motion.form
                             onSubmit={handleUpdate}
-                            className="space-y-5 px-6 py-4 overflow-y-auto max-h-[75vh]"
+                            className="px-6 py-6 space-y-6"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.25 }}
                         >
-                            {/* Title */}
-                            <div className="flex flex-col">
-                                <Label htmlFor="title" className="mb-2 font-medium text-gray-700">Buisness Title</Label>
-                                <Input
-                                    id="title"
-                                    name="title"
-                                    value={selectedListing.title}
-                                    onChange={handleChange}
-                                    placeholder="Enter title"
-                                    className="shadow-sm focus:ring-[#b6985a] focus:border-[#b6985a]"
-                                />
+
+                            {/* 🔹 BASIC INFO */}
+                            <div>
+                                <h3 className="text-lg font-semibold mb-3 text-gray-800">
+                                    Basic Information
+                                </h3>
+
+                                <div className="space-y-4">
+                                    <Input
+                                        label="Business Title"
+                                        name="title"
+                                        value={selectedListing.title}
+                                        onChange={handleChange}
+                                    />
+
+                                    <Textarea
+                                        label="Description"
+                                        name="description"
+                                        value={selectedListing.description}
+                                        onChange={handleChange}
+                                        rows={4}
+                                    />
+
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <Label className="mb-1">Category</Label>
+                                            <select
+                                                name="category"
+                                                value={selectedListing.category || ""}
+                                                onChange={handleChange}
+                                                className="w-full border rounded-md p-2 text-sm"
+                                            >
+                                                <option value="">Select Category</option>
+                                                <option>Hotels & Resorts</option>
+                                                <option>Restaurants & Cafes</option>
+                                                <option>Travel & Tourism Services</option>
+                                                <option>Real Estate & Properties</option>
+                                                <option>Healthcare Services</option>
+                                                <option>Education & Coaching</option>
+                                                <option>Salons, Spas & Wellness</option>
+                                                <option>Grocery & Supermarkets</option>
+                                                <option>Fashion & Clothing Stores</option>
+                                                <option>Electronics & Mobile Stores</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <Label className="mb-1">Status</Label>
+                                            <select
+                                                name="status"
+                                                value={selectedListing.status}
+                                                onChange={handleChange}
+                                                className="w-full border rounded-md p-2 text-sm"
+                                            >
+                                                <option value="pending">Pending</option>
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            {/* Description */}
-                            <div className="flex flex-col">
-                                <Label htmlFor="description" className="mb-2 font-medium text-gray-700">Description</Label>
-                                <Textarea
-                                    id="description"
-                                    name="description"
-                                    value={selectedListing.description}
-                                    onChange={handleChange}
-                                    rows={4}
-                                    placeholder="Enter description"
-                                    className="shadow-sm focus:ring-[#b6985a] focus:border-[#b6985a]"
-                                />
+                            {/* 🔹 CONTACT */}
+                            <div>
+                                <h3 className="text-lg font-semibold mb-3 text-gray-800">
+                                    Contact Details
+                                </h3>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <Input label="Phone" name="phone" value={selectedListing.phone} onChange={handleChange} />
+                                    <Input label="Email" name="email" value={selectedListing.email} onChange={handleChange} />
+                                </div>
                             </div>
 
-                            {/* Category */}
-                            <div className="flex flex-col">
-                                <Label htmlFor="category" className="mb-1 font-medium text-gray-700">Category</Label>
-                                <select
-                                    id="category"
-                                    name="category"
-                                    value={selectedListing.category || ""}
-                                    onChange={handleChange}
-                                    className="border border-gray-300 rounded-md p-2 text-sm focus:ring-[#b6985a] focus:border-[#b6985a]"
-                                >
-                                    <option value="">Select Category</option>
-                                    <option value="Hotels & Resorts">Hotels & Resorts</option>
-                                    <option value="Restaurants & Cafes">Restaurants & Cafes</option>
-                                    <option value="Travel & Tourism Services">Travel & Tourism Services</option>
-                                    <option value="Real Estate & Properties">Real Estate & Properties</option>
-                                    <option value="Healthcare Services">Healthcare Services</option>
-                                    <option value="Education & Coaching">Education & Coaching</option>
-                                    <option value="Salons, Spas & Wellness">Salons, Spas & Wellness</option>
-                                    <option value="Grocery & Supermarkets">Grocery & Supermarkets</option>
-                                    <option value="Fashion & Clothing Stores">Fashion & Clothing Stores</option>
-                                    <option value="Electronics & Mobile Stores">Electronics & Mobile Stores</option>
-                                </select>
+                            {/* 🔹 ADDRESS */}
+                            <div>
+                                <h3 className="text-lg font-semibold mb-3 text-gray-800">
+                                    Address
+                                </h3>
+
+                                <div className="grid grid-cols-3 gap-4">
+                                    {["district", "state", "pincode"].map((field) => (
+                                        <Input
+                                            key={field}
+                                            label={field}
+                                            value={selectedListing.address?.[field] || ""}
+                                            onChange={(e) =>
+                                                setSelectedListing({
+                                                    ...selectedListing,
+                                                    address: {
+                                                        ...selectedListing.address,
+                                                        [field]: e.target.value,
+                                                    },
+                                                })
+                                            }
+                                        />
+                                    ))}
+                                </div>
                             </div>
 
-                            {/* Status */}
-                            <div className="flex flex-col">
-                                <Label htmlFor="status" className="mb-2 font-medium text-gray-700">Status</Label>
-                                <select
-                                    id="status"
-                                    name="status"
-                                    value={selectedListing.status}
-                                    onChange={handleChange}
-                                    className="border border-gray-300 rounded-md p-2 text-sm focus:ring-[#b6985a] focus:border-[#b6985a]"
-                                >
-                                    <option value="pending">Pending</option>
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                </select>
+                            {/* 🔹 SOCIAL MEDIA */}
+                            <div>
+                                <h3 className="text-lg font-semibold mb-3 text-gray-800">
+                                    Social Media
+                                </h3>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    {["facebook", "instagram", "twitter", "linkedin", "website"].map((sm) => (
+                                        <Input
+                                            key={sm}
+                                            label={sm}
+                                            value={selectedListing.socialMedia?.[sm] || ""}
+                                            onChange={(e) =>
+                                                setSelectedListing({
+                                                    ...selectedListing,
+                                                    socialMedia: {
+                                                        ...selectedListing.socialMedia,
+                                                        [sm]: e.target.value,
+                                                    },
+                                                })
+                                            }
+                                        />
+                                    ))}
+                                </div>
                             </div>
 
-                            {/* Contact */}
-                            <Input label="Phone" name="phone" value={selectedListing.phone} onChange={handleChange} />
-                            <Input label="Email" name="email" value={selectedListing.email} onChange={handleChange} />
+                            {/* 🔹 GOOGLE DATA */}
+                            <div>
+                                <h3 className="text-lg font-semibold mb-3 text-gray-800">
+                                    Google Data
+                                </h3>
 
-                            {/* Address */}
-                            {["district", "state", "pincode"].map((field) => (
-                                <Input
-                                    key={field}
-                                    label={field.charAt(0).toUpperCase() + field.slice(1)}
-                                    name={field}
-                                    value={selectedListing.address?.[field] || ""}
-                                    onChange={(e) =>
-                                        setSelectedListing({
-                                            ...selectedListing,
-                                            address: { ...selectedListing.address, [field]: e.target.value },
-                                        })
-                                    }
-                                />
-                            ))}
+                                <div className="grid grid-cols-2 gap-4">
+                                    <Input
+                                        label="Place ID"
+                                        name="googlePlaceId"
+                                        value={selectedListing.googlePlaceId}
+                                        onChange={handleChange}
+                                    />
+                                    <Input
+                                        label="Last Updated"
+                                        name="googleLastUpdated"
+                                        value={selectedListing.googleLastUpdated}
+                                        onChange={handleChange}
+                                    />
+                                    <Input
+                                        label="Rating"
+                                        name="googleRating"
+                                        value={selectedListing.googleRating}
+                                        onChange={handleChange}
+                                    />
+                                    <Input
+                                        label="Total Reviews"
+                                        name="googleReviewsCount"
+                                        value={selectedListing.googleReviewsCount}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </div>
 
-                            {/* Social Media */}
-                            {["facebook", "instagram", "twitter", "linkedin", "website"].map((sm) => (
-                                <Input
-                                    key={sm}
-                                    label={sm.charAt(0).toUpperCase() + sm.slice(1)}
-                                    name={sm}
-                                    value={selectedListing.socialMedia?.[sm] || ""}
-                                    onChange={(e) =>
-                                        setSelectedListing({
-                                            ...selectedListing,
-                                            socialMedia: { ...selectedListing.socialMedia, [sm]: e.target.value },
-                                        })
-                                    }
-                                />
-                            ))}
+                            {/* 🔹 IMAGE */}
+                            <div>
+                                <h3 className="text-lg font-semibold mb-3 text-gray-800">
+                                    Image
+                                </h3>
 
-                            {/* Image */}
-                            <div className="flex flex-col">
-                                <Label htmlFor="image" className="mb-2 font-medium text-gray-700">Upload Image</Label>
                                 {selectedListing.imageUrl && (
                                     <img
                                         src={selectedListing.imageUrl}
-                                        alt="Preview"
-                                        className="w-32 h-32 rounded-md object-cover mb-2 border shadow-sm"
-                                        loading="lazy"
+                                        className="w-32 h-32 object-cover rounded-lg border mb-3"
                                     />
                                 )}
+
                                 <Input
-                                    id="image"
-                                    name="image"
                                     type="file"
-                                    accept="image/*"
                                     onChange={(e) => {
                                         const file = e.target.files[0];
-                                        if (file) setSelectedListing({ ...selectedListing, image: file, imageUrl: URL.createObjectURL(file) });
+                                        if (file) {
+                                            setSelectedListing({
+                                                ...selectedListing,
+                                                image: file,
+                                                imageUrl: URL.createObjectURL(file),
+                                            });
+                                        }
                                     }}
-                                    className="shadow-sm focus:ring-[#5156be] focus:border-[#b6985a]"
                                 />
                             </div>
 
-                            {/* Footer */}
-                            <SheetFooter className="flex justify-end gap-3 mt-4">
-                                <SheetClose asChild>
-                                    <Button variant="outline" className="hover:bg-gray-100 transition">Cancel</Button>
-                                </SheetClose>
-                                <Button type="submit" className="bg-[#5156be] hover:bg-[#5156be] text-white transition-all shadow-md">
+                            {/* 🔹 FOOTER */}
+                            <div className="flex justify-end gap-3 pt-4 border-t">
+                                <Button variant="outline">Cancel</Button>
+                                <Button type="submit" className="bg-[#5156be] text-white">
                                     Save Changes
                                 </Button>
-                            </SheetFooter>
+                            </div>
                         </motion.form>
                     )}
                 </SheetContent>
             </Sheet>
-        </div>
+        </div >
     );
 
 };

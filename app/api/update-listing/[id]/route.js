@@ -20,7 +20,8 @@ export async function PUT(req, context) {
 
         const contentType = req.headers.get("content-type");
 
-        let title, description, category, email, phone, address, socialMedia, status;
+        let title, description, category, email, phone, address, socialMedia, status, googlePlaceId, googleLastUpdated, googleRating, googleReviewsCount;
+
         let file = null;
 
         if (contentType.includes("multipart/form-data")) {
@@ -36,6 +37,12 @@ export async function PUT(req, context) {
             address = JSON.parse(formData.get("address"));
             socialMedia = JSON.parse(formData.get("socialMedia"));
 
+
+            googlePlaceId = formData.get("googlePlaceId");
+            googleLastUpdated = formData.get("googleLastUpdated");
+            googleRating = formData.get("googleRating");
+            googleReviewsCount = formData.get("googleReviewsCount");
+
             file = formData.get("image");
         } else {
             const body = await req.json();
@@ -43,6 +50,9 @@ export async function PUT(req, context) {
         }
 
         const listing = await ProductListing.findById(id);
+
+
+
         if (!listing) {
             return new Response(JSON.stringify({ success: false, message: "Listing not found" }), {
                 status: 404,
@@ -58,6 +68,12 @@ export async function PUT(req, context) {
         listing.address = address || listing.address;
         listing.socialMedia = socialMedia || listing.socialMedia;
         listing.status = status || listing.status;
+
+
+        listing.googlePlaceId = googlePlaceId || listing.googlePlaceId;
+        listing.googleLastUpdated = googleLastUpdated || listing.googleLastUpdated;
+        listing.googleRating = googleRating || listing.googleRating;
+        listing.googleReviewsCount = googleReviewsCount || listing.googleReviewsCount;
 
         if (file) {
             if (listing.imagePublicId) {
