@@ -451,13 +451,13 @@ export default function CategoryListingPage({ categorySlug }) {
                                             asChild
                                             size="sm"
                                             className="
-                bg-[#007A0C] hover:bg-green-900 text-white font-semibold shadow-md flex items-center gap-1
+                bg-[#20982F] hover:bg-green-600 text-white font-semibold shadow-md flex items-center gap-1
 
                 /* Mobile small size */
                 px-2 py-1 text-xs h-7
 
                 /* Desktop normal size */
-                sm:px-5 sm:py-2 sm:text-sm sm:h-auto
+                sm:px-4 sm:py-1.5 sm:text-sm sm:h-auto
             "
                                         >
                                             <a

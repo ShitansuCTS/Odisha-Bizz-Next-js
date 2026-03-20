@@ -56,25 +56,7 @@ export default function MainDashboard() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  //   useEffect(() => {
-  //     const checkAuth = async () => {
-  //       setLoading(true);
-  //       try {
-  //         const res = await axios.get(`${API}/check-auth`, {
-  //           withCredentials: true,
-  //         });
-
-  //         if (res.status === 200) setLoading(false);
-  //       } catch (err) {
-  //         toast.error("Unauthorized access!");
-  //         router.push("/admin/login");
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     };
-
-  //     checkAuth();
-  //   }, [router, API]);
+  
 
   const renderContent = () => {
     switch (activeTab) {
