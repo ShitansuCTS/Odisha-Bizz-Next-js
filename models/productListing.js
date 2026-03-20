@@ -6,8 +6,11 @@ const productListingSchema = new mongoose.Schema(
     {
         title: { type: String, required: true, trim: true },
         description: { type: String, required: true },
-        category: { type: String, required: true },
-        categorySlug: { type: String, lowercase: true, index: true },
+        category: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Category",
+            required: true,
+        },
         slug: { type: String, unique: true, lowercase: true },
         email: { type: String, required: true, lowercase: true, trim: true },
         phone: { type: String, required: true },
@@ -77,13 +80,6 @@ productListingSchema.pre("save", async function (next) {
         }
     }
 
-    if (this.category) {
-        this.category = this.category.trim().toLowerCase();
-    }
-    // ⭐ Add category slug
-    if (this.isModified("category")) {
-        this.categorySlug = slugify(this.category, { lower: true, strict: true });
-    }
 
     if (this.isModified("title")) {
         const baseSlug = slugify(this.title, { lower: true, strict: true });

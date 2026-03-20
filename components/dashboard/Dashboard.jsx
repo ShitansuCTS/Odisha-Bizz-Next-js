@@ -15,6 +15,7 @@ import ProfilePage from "@/components/dashboard/ProfilePage";
 import AnalyticsDashboard from "@/components/dashboard/AnalyticsDashboard";
 import useAuthStore from "@/store/authStore";
 import GoogleSync from "./GoogleSync";
+import CategorySetup from "./CategorySetup";
 
 
 export default function MainDashboard() {
@@ -56,7 +57,7 @@ export default function MainDashboard() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  
+
 
   const renderContent = () => {
     switch (activeTab) {
@@ -76,6 +77,8 @@ export default function MainDashboard() {
         return <div>Revenue Tab</div>;
       case "Google Integration":
         return <GoogleSync />;
+      case "Category Settings":
+        return <CategorySetup />;
       default:
         return <HomeDashboard />;
     }

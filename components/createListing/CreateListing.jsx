@@ -53,6 +53,8 @@ export default function CreateListing() {
     // completed map for showing checkmarks
     const [completed, setCompleted] = useState({});
 
+    const [categories, setCategories] = useState([]);
+
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -79,7 +81,26 @@ export default function CreateListing() {
     }, []);
 
 
-    
+
+    // =================fetch categories=================
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const res = await fetch("/api/category");
+                const data = await res.json();
+
+                if (data.success) {
+                    setCategories(data.categories);
+                }
+            } catch (err) {
+                console.error("Category fetch error:", err);
+            }
+        };
+
+        fetchCategories();
+    }, []);
+
+
     // ================ FETCH STATES ================
     useEffect(() => {
         const fetchStates = async () => {
@@ -132,7 +153,7 @@ export default function CreateListing() {
                 return formData.title.trim().length > 0 && formData.description.trim().length > 0;
             case 2:
                 return (
-                    formData.category.trim().length > 0 &&
+                    formData.category && // ✅ this line fix
                     /\S+@\S+\.\S+/.test(formData.email) &&
                     formData.phone.trim().length >= 6
                 );
@@ -184,6 +205,10 @@ export default function CreateListing() {
             data.append("address", JSON.stringify(formData.address));
             data.append("socialMedia", JSON.stringify(formData.socialMedia));
             if (image) data.append("image", image);
+
+
+            console.log("CATEGORY VALUE:", formData.category);
+
 
             await axios.post("/api/post-listing", data, {
                 withCredentials: true,
@@ -468,20 +493,9 @@ export default function CreateListing() {
                                                             <SelectValue placeholder="Select Category" />
                                                         </SelectTrigger>
                                                         <SelectContent>
-                                                            {[
-                                                                "Hotels & Resorts",
-                                                                "Restaurants & Cafes",
-                                                                "Travel & Tourism Services",
-                                                                "Real Estate & Properties",
-                                                                "Healthcare Services",
-                                                                "Education & Coaching",
-                                                                "Salons, Spas & Wellness",
-                                                                "Grocery & Supermarkets",
-                                                                "Fashion & Clothing Stores",
-                                                                "Electronics & Mobile Stores",
-                                                            ].map((c) => (
-                                                                <SelectItem key={c} value={c}>
-                                                                    {c}
+                                                            {categories.map((cat) => (
+                                                                <SelectItem key={cat._id} value={cat._id}>
+                                                                    {cat.name}
                                                                 </SelectItem>
                                                             ))}
                                                         </SelectContent>

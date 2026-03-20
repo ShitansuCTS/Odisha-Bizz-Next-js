@@ -10,7 +10,7 @@ import {
   ChevronDown,
 
 } from "lucide-react";
-import { MdInfo, MdVerified, MdStar, MdLocationOn } from "react-icons/md";
+import { MdInfo, MdVerified, MdStar, MdLocationOn, MdCategory } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -47,6 +47,10 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
       name: "Pages",
       icon: <FileText size={18} />,
       subItems: [{ name: "Profile" }, { name: "Settings" }],
+    },
+    {
+      name: "Category Settings",
+      icon: <MdCategory className="text-gray-500 text-lg" size={18} />,
     },
     {
       name: "Google Integration",
