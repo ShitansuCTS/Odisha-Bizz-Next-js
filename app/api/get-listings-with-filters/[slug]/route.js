@@ -1,5 +1,7 @@
 import ProductListing from "@/models/productListing";
 import { connectDB } from "@/lib/dbConnect";
+import Category from "@/models/categoryModel";
+import { ThermometerSnowflake } from "lucide-react";
 
 connectDB(); // connect to MongoDB
 
@@ -24,16 +26,43 @@ export async function GET(req, { params }) {
         const url = new URL(req.url);
         const district = url.searchParams.get("district");
 
+
+
+
+
+
         if (!district || !slug) {
             return new Response(JSON.stringify({ mainListings: [], related: [], otherListings: [] }), { status: 400 });
         }
 
+        // here i am getting ThermometerSnowflake
+        // The data is : { slug: 'internet-service-provider', district: 'Khordha' }
+
+
+
+
+        // ✅ Get category document
+        const categoryDoc = await Category.findOne({ slug });
+
+
+        // console.log("The data is :", { slug, district, categoryDoc });
+
+
+        if (!categoryDoc) {
+            return new Response(JSON.stringify({
+                mainListings: [],
+                related: [],
+                otherListings: []
+            }), { status: 404 });
+        }
+
         // 1️⃣ Get main listings in the same district with the slug
         const mainListings = await ProductListing.find({
-            categorySlug: slug,
+            category: categoryDoc._id,
             "address.district": { $regex: district, $options: "i" },
             status: "active",
         })
+            .populate("category", "name slug imageUrl") // ✅ ADD THIS
             .sort({ googleRating: -1, googleReviewsCount: -1 });
 
         // console.log("mainListings", mainListings);
@@ -65,7 +94,7 @@ export async function GET(req, { params }) {
 
         const related = await ProductListing.distinct("category", {
             "address.district": { $regex: district, $options: "i" },
-            categorySlug: { $ne: slug },
+            category: { $ne: categoryDoc._id },
             status: "active",
             $or: keywordRegexArr,
         });
@@ -76,15 +105,36 @@ export async function GET(req, { params }) {
             {
                 $match: {
                     "address.district": { $regex: district, $options: "i" },
-                    categorySlug: { $ne: slug }
+                    categorySlug: { $ne: slug },
+                    status: "active"
                 }
             },
+
+            // 🔥 JOIN with category collection
+            {
+                $lookup: {
+                    from: "categories", // ⚠️ collection name in MongoDB
+                    localField: "category",
+                    foreignField: "_id",
+                    as: "categoryData"
+                }
+            },
+
+            // convert array → object
+            {
+                $unwind: "$categoryData"
+            },
+
             {
                 $group: {
-                    _id: { category: "$category", slug: "$categorySlug" },
+                    _id: {
+                        category: "$categoryData.name",
+                        slug: "$categoryData.slug"
+                    },
                     count: { $sum: 1 }
                 }
             },
+
             {
                 $project: {
                     _id: 0,
@@ -96,7 +146,7 @@ export async function GET(req, { params }) {
         ]);
 
 
-
+        console.log("Othe listing are :", otherListings);
 
 
         return new Response(JSON.stringify({ mainListings, related, otherListings }), { status: 200 });

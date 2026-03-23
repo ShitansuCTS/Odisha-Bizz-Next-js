@@ -177,6 +177,10 @@ export default function CategoryListingPage({ categorySlug }) {
 
 
 
+    useEffect(() => {
+        console.log("oTHER LISTING AEE ", otherListings);
+    })
+
     return (
         <>
             {/* {loading && <Loader />} */}
@@ -280,11 +284,11 @@ export default function CategoryListingPage({ categorySlug }) {
                                                             item.category
                                                         )}`}
                                                     >
-                                                        {item.category}
+                                                        {item.category?.name}
                                                     </Badge>
                                                 </TooltipTrigger>
                                                 <TooltipContent>
-                                                    <p>Category: {item.category}</p>
+                                                    <p>Category: {item.category?.name}</p>
                                                 </TooltipContent>
                                             </Tooltip>
                                         </TooltipProvider>
@@ -485,6 +489,8 @@ export default function CategoryListingPage({ categorySlug }) {
                     )}
                 </section>
 
+
+
                 {/* RIGHT SIDE — RELATED */}
                 <aside className="w-full md:w-72 mt-8 md:mt-0 md:sticky md:top-20 h-max">
                     <div className="flex flex-col gap-6">
@@ -512,7 +518,7 @@ export default function CategoryListingPage({ categorySlug }) {
                                         >
                                             <div className="flex flex-col">
                                                 <span className="text-sm font-medium text-gray-800">
-                                                    {item.category.replace(/\b\w/g, (c) => c.toUpperCase())}
+                                                    {item.category}
                                                 </span>
                                             </div>
 

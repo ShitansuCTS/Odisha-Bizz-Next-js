@@ -1,5 +1,6 @@
 import { connectDB } from "@/lib/dbConnect"; // Your MongoDB connection helper
 import ProductListing from "@/models/productListing";
+import Category from "@/models/categoryModel"; // ✅ IMPORTANT
 
 connectDB(); // Ensure DB is connected
 
@@ -21,6 +22,10 @@ export async function GET(req) {
         const skip = (page - 1) * limit;
 
         const listings = await ProductListing.find(filter)
+            .populate({
+                path: "category",
+                select: "name slug imageUrl", // ✅ what you want
+            })
             .skip(skip)
             .limit(limit)
             .sort({ createdAt: -1 });

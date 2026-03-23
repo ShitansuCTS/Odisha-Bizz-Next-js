@@ -57,6 +57,7 @@ const AllListingWithFilter = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [total, setTotal] = useState(0);
+    const [categories, setCategories] = useState([]);
 
     const fetchData = async (cat = "", statusVal = "", stateVal = "", pageNum = 1) => {
         setLoading(true);
@@ -118,7 +119,10 @@ const AllListingWithFilter = () => {
             // Basic fields
             formData.append("title", selectedListing.title);
             formData.append("description", selectedListing.description);
-            formData.append("category", selectedListing.category);
+            formData.append(
+                "category",
+                selectedListing.category?._id || selectedListing.category
+            );
             formData.append("status", selectedListing.status);
             formData.append("email", selectedListing.email);
             formData.append("phone", selectedListing.phone);
@@ -159,6 +163,21 @@ const AllListingWithFilter = () => {
             setLoading(false);
         }
     };
+
+    const fetchCategories = async () => {
+        try {
+            const res = await axios.get("/api/category");
+            if (res.data.success) {
+                setCategories(res.data.categories);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
 
 
     useEffect(() => {
@@ -297,7 +316,7 @@ const AllListingWithFilter = () => {
                                             <TableCell className="font-medium text-slate-800">{listing.title}</TableCell>
                                             <TableCell>
                                                 <span className="text-xs capitalize px-3 py-1 rounded-full bg-linear-to-r from-indigo-500 to-purple-500 text-white font-medium">
-                                                    {listing.category}
+                                                    {listing.category?.name || "-"}
                                                 </span>
                                             </TableCell>
                                             <TableCell className="capitalize text-slate-600 flex items-center gap-1.5 pt-4">
@@ -451,21 +470,22 @@ const AllListingWithFilter = () => {
                                             <Label className="mb-1">Category</Label>
                                             <select
                                                 name="category"
-                                                value={selectedListing.category || ""}
-                                                onChange={handleChange}
+                                                value={selectedListing.category?._id || selectedListing.category || ""}
+                                                onChange={(e) =>
+                                                    setSelectedListing({
+                                                        ...selectedListing,
+                                                        category: e.target.value, // ✅ ONLY ID
+                                                    })
+                                                }
                                                 className="w-full border rounded-md p-2 text-sm"
                                             >
                                                 <option value="">Select Category</option>
-                                                <option>Hotels & Resorts</option>
-                                                <option>Restaurants & Cafes</option>
-                                                <option>Travel & Tourism Services</option>
-                                                <option>Real Estate & Properties</option>
-                                                <option>Healthcare Services</option>
-                                                <option>Education & Coaching</option>
-                                                <option>Salons, Spas & Wellness</option>
-                                                <option>Grocery & Supermarkets</option>
-                                                <option>Fashion & Clothing Stores</option>
-                                                <option>Electronics & Mobile Stores</option>
+
+                                                {categories.map((cat) => (
+                                                    <option key={cat._id} value={cat._id}>
+                                                        {cat.name}
+                                                    </option>
+                                                ))}
                                             </select>
                                         </div>
 
