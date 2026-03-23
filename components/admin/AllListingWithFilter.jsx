@@ -119,7 +119,10 @@ const AllListingWithFilter = () => {
             // Basic fields
             formData.append("title", selectedListing.title);
             formData.append("description", selectedListing.description);
-            formData.append("category", selectedListing.category);
+            formData.append(
+                "category",
+                selectedListing.category?._id || selectedListing.category
+            );
             formData.append("status", selectedListing.status);
             formData.append("email", selectedListing.email);
             formData.append("phone", selectedListing.phone);
