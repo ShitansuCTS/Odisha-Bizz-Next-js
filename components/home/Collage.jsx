@@ -8,22 +8,22 @@ const womenServices = [
     { name: "Hotels & Resorts", icon: "/icons/review.png", slug: "/category/hotels-and-resorts" },
     { name: "Healthcare", icon: "/icons/healthcare.png", slug: "/category/healthcare-services" },
     { name: "Spa & Wellness", icon: "/icons/spa.png", slug: "/category/salons-spas-and-wellness" },
-    { name: "Grocery & Supermarkets", icon: "/icons/grocery.png" },
+    { name: "Car Showroom", icon: "/icons/showroom.png", slug: "/category/car-showrooms" },
     { name: "Electronics & Mobile Stores", icon: "/icons/electronics.png" },
-    { name: "Home Cleaning ", icon: "/icons/home-clean.png", },
-    { name: "Laundry & Dry Cleaning", icon: "/icons/laundry.png" },
-    { name: "Hotels & Resorts", icon: "/icons/review.png" },
+    { name: "Sweets & Snacks", icon: "/icons/candy.png", slug: "/category/sweets-and-snacks" },
+    { name: "Digital Marketing agency ", icon: "/icons/digital-advertising.png", slug: "/category/digital-marketing-agency" },
+    { name: "Interior designers ", icon: "/icons/couch.png", slug: "/category/interior-designers" },
 ];
 
 const menServices = [
     { name: "Education & Coaching", icon: "/icons/education.png", slug: "/category/education-and-coaching" },
     { name: "Real Estate", icon: "/icons/real-estate.png", slug: "/category/real-estate-and-properties" },
     { name: "Travel & Tourism", icon: "/icons/travel.png", slug: "/category/travel-and-tourism-services" },
-    { name: "Fashion & Clothing ", icon: "/icons/fashon.png" },
-    { name: "Photography & Videography", icon: "/icons/photography.png" },
-    { name: "Event Planning & Decoration", icon: "/icons/event.png" },
+    { name: "Tiles And Granite Showrooms ", icon: "/icons/tile.png", slug: "tiles-and-granite-showrooms" },
+    { name: "Photography & Videography", icon: "/icons/photography.png", slug: "/category/photography" },
+    { name: "Event Planning & Decoration", icon: "/icons/event.png", slug: "/category/event-companies" },
     { name: "Restaurants & Cafes", icon: "/icons/restaurant.png", slug: "/category/restaurants-and-cafes" },
-    { name: "Hotels & Resorts", icon: "/icons/review.png", slug: "/category/hotels-and-resorts" }
+    { name: "Construction companies", icon: "/icons/construction.png", slug: "/category/construction-companies" }
 ];
 
 export default function Collage() {

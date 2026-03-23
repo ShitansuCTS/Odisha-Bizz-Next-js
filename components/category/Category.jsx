@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import SkeletonCard from "@/components/loader/CategorySkeleton";
 
 const services = [
     {
@@ -106,53 +107,56 @@ export default function Category() {
             </section>
             <div className="w-full py-16 px-6 bg-linear-to-b from-white flex justify-center">
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl w-full">
-                    {categories.map((cat, idx) => (
-                        <motion.div
-                            key={cat._id}
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{
-                                delay: idx * 0.1,
-                                duration: 0.5,
-                            }}
-                        >
-                            <Card className="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border-0 flex flex-col h-full">
 
-                                {/* IMAGE */}
-                                <div className="relative w-full h-48 overflow-hidden bg-gray-100">
-                                    <img
-                                        src={cat.imageUrl || "/placeholder.jpg"}
-                                        alt={cat.name}
-                                        className="w-full h-full object-cover hover:scale-105 transition"
-                                    />
-                                </div>
+                    {loading
+                        ? Array.from({ length: 8 }).map((_, i) => (
+                            <SkeletonCard key={i} />
+                        ))
+                        : categories.map((cat, idx) => (
+                            <motion.div
+                                key={cat._id}
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    delay: idx * 0.1,
+                                    duration: 0.5,
+                                }}
+                            >
+                                <Card className="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border-0 flex flex-col h-full">
 
-                                {/* CONTENT */}
-                                <CardContent className="flex flex-col justify-between flex-1 p-6">
-                                    <div>
-                                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                                            {cat.name}
-                                        </h3>
-
-                                        {/* Optional description (if you add later in schema) */}
-                                        <p className="text-gray-600 text-sm">
-                                            Explore top businesses under {cat.name}
-                                        </p>
+                                    {/* IMAGE */}
+                                    <div className="relative w-full h-48 overflow-hidden bg-gray-100">
+                                        <img
+                                            src={cat.imageUrl || "/placeholder.jpg"}
+                                            alt={cat.name}
+                                            className="w-full h-full object-cover hover:scale-105 transition"
+                                        />
                                     </div>
 
-                                    {/* LINK */}
-                                    <div className="mt-6 flex justify-end">
-                                        <Link
-                                            href={`/category/${cat.slug}`}
-                                            className="flex items-center gap-2 bg-[#249732] hover:bg-green-600 text-white rounded-full px-5 py-2 shadow-md transition-all"
-                                        >
-                                            More <ArrowRight className="w-4 h-4" />
-                                        </Link>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
-                    ))}
+                                    {/* CONTENT */}
+                                    <CardContent className="flex flex-col justify-between flex-1 p-6">
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                                                {cat.name}
+                                            </h3>
+
+                                            <p className="text-gray-600 text-sm">
+                                                Explore top businesses under {cat.name}
+                                            </p>
+                                        </div>
+
+                                        <div className="mt-6 flex justify-end">
+                                            <Link
+                                                href={`/category/${cat.slug}`}
+                                                className="flex items-center gap-2 bg-[#249732] hover:bg-green-600 text-white rounded-full px-5 py-2 shadow-md transition-all"
+                                            >
+                                                More <ArrowRight className="w-4 h-4" />
+                                            </Link>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
+                        ))}
                 </div>
             </div>
         </>
