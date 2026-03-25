@@ -3,8 +3,8 @@ import About from "@/components/about/About";
 
 
 export const metadata = {
-    title: "About Us || Odisha Biz - Property Listing & Showcase Platform",
-    description: "Discover Odisha Biz, the ultimate platform to list, showcase, and manage your properties. Connect with clients and maximize your property visibility."
+    title: "All About Listings, Overview and Business Solutions",
+    description: "A trusted property listing platform in Bhubaneswar helping owners, agents, and businesses showcase properties, manage listings easily, and connect with potential buyers across Odisha."
 };
 
 

@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Welcome to Odisha Biz || Properties & Local Business Listings",
-  description: "Explore verified property and business listings in Odisha including hotels, restaurants, travel, and commercial spaces.",
+  title: "Trusted Properties & Local Business Listing Platform in Odisha",
+  description: "Find and connect with trusted professionals, vendors, and local businesses across Odisha with Odisha Biz, the leading local business listing platform in the state.",
   verification: { google: "NVR4AH5Lsgl3TVcyHrctrI9luhl9gIXlU0Wr4s4zfM8" },
   icons: { icon: "/logo-fav.ico" },
 };
