@@ -15,6 +15,18 @@ const categorySchema = new mongoose.Schema(
             lowercase: true,
             index: true,
         },
+        // SEO Fields
+        metaTitle: {
+            type: String,
+            trim: true,
+            default: "",
+        },
+
+        metaDescription: {
+            type: String,
+            trim: true,
+            default: "",
+        },
 
         // 🖼️ Category image (optional for now)
         imageUrl: {
@@ -62,6 +74,7 @@ categorySchema.pre("save", function (next) {
 // export default Category;
 
 
-const Category = mongoose.model("Category", categorySchema);
+const Category =
+    mongoose.models.Category || mongoose.model("Category", categorySchema);
 
 export default Category;
