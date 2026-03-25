@@ -3,7 +3,7 @@ import { connectDB } from "@/lib/dbConnect";
 import Category from "@/models/categoryModel";
 import cloudinary from "@/lib/cloudinary";
 
-await connectDB();
+
 
 
 /**
@@ -11,12 +11,16 @@ await connectDB();
  */
 export async function PUT(req, { params }) {
     try {
+
+        await connectDB();
         const { id } = await params; // ✅ FIX
 
         const formData = await req.formData();
         const name = formData.get("name");
         const order = formData.get("order") || 0;
         const imageFile = formData.get("image");
+        const metaTitle = formData.get("metaTitle");
+        const metaDescription = formData.get("metaDescription");
 
         const category = await Category.findById(id);
 
@@ -29,6 +33,10 @@ export async function PUT(req, { params }) {
 
         if (name) category.name = name;
         category.order = order;
+
+        // ✅ SEO update
+        if (metaTitle !== null) category.metaTitle = metaTitle;
+        if (metaDescription !== null) category.metaDescription = metaDescription;
 
         if (imageFile && imageFile.size > 0) {
             if (category.imagePublicId) {
@@ -75,6 +83,7 @@ export async function PUT(req, { params }) {
 
 export async function DELETE(req, { params }) {
     try {
+        await connectDB();
         const { id } = await params; // ✅ FIX
 
         const category = await Category.findById(id);

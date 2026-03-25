@@ -21,6 +21,8 @@ export default function CategorySetup() {
         name: "",
         image: null,
         imageUrl: "",
+        metaTitle: "",
+        metaDescription: "",
     });
 
     const fetchCategories = async () => {
@@ -74,7 +76,9 @@ export default function CategorySetup() {
             id: cat._id,
             name: cat.name,
             image: null,
-            imageUrl: cat.imageUrl, // ✅ THIS WAS MISSING
+            imageUrl: cat.imageUrl,
+            metaTitle: cat.metaTitle || "",
+            metaDescription: cat.metaDescription || "",
         });
         setEditOpen(true);
     };
@@ -84,6 +88,10 @@ export default function CategorySetup() {
             const data = new FormData();
             data.append("name", editData.name);
             if (editData.image) data.append("image", editData.image);
+            
+            // ✅ ADD THESE
+            data.append("metaTitle", editData.metaTitle);
+            data.append("metaDescription", editData.metaDescription);
 
             await axios.put(`/api/category/${editData.id}`, data);
 
@@ -281,6 +289,32 @@ export default function CategorySetup() {
                                         />
                                     </div>
                                 </div>
+                                {/* META TITLE */}
+                                <div className="space-y-1">
+                                    <Label>Meta Title</Label>
+                                    <Input
+                                        value={editData.metaTitle}
+                                        onChange={(e) =>
+                                            setEditData({ ...editData, metaTitle: e.target.value })
+                                        }
+                                        placeholder="Enter SEO title"
+                                    />
+                                </div>
+
+                                {/* META DESCRIPTION */}
+                                <div className="space-y-1">
+                                    <Label>Meta Description</Label>
+                                    <textarea
+                                        value={editData.metaDescription}
+                                        onChange={(e) =>
+                                            setEditData({ ...editData, metaDescription: e.target.value })
+                                        }
+                                        placeholder="Enter SEO description"
+                                        className="w-full border rounded-lg p-2 text-sm"
+                                        rows={4}
+                                    />
+                                </div>
+
                             </div>
 
                             {/* 🔹 FOOTER */}
