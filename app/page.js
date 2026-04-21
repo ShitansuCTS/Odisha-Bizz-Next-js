@@ -15,7 +15,7 @@ export default function Home() {
       <Collage />
       <Cities />
       <FeaturedServices />
-      <WhyChooseUs />
+      {/* <WhyChooseUs /> */}
       <Faq />
     </>
   );
