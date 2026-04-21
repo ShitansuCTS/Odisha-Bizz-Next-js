@@ -41,7 +41,7 @@ const Footer = () => {
         {/* 1️⃣ Logo + Description */}
         <div className="flex flex-col gap-4 items-start">
           <img
-            src="/images/logo.png"
+            src="/footer-logo.png"
             alt="Odisha Biz"
             className="h-12 object-contain"
             loading="lazy"
