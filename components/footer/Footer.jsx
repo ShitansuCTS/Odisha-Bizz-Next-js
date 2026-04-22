@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 
@@ -47,8 +47,8 @@ const Footer = () => {
             loading="lazy"
           />
           <p className="text-white text-sm leading-relaxed text-justify">
-            <span className="font-semibold text-white">Odisha Biz</span> is
-            your one-stop platform to explore, connect, and list businesses and
+            <span className="font-semibold text-white">Odisha Biz</span> is your
+            one-stop platform to explore, connect, and list businesses and
             properties across Odisha. Discover the right opportunities for your
             growth and visibility in just a few clicks.
           </p>
@@ -66,17 +66,21 @@ const Footer = () => {
           <Link href="/categories" className="hover:text-[#249732] transition">
             Our Categories
           </Link>
-          <Link href="/privacy-policy" className="hover:text-[#249732] transition">
+          <Link
+            href="/privacy-policy"
+            className="hover:text-[#249732] transition"
+          >
             Privacy Policy
           </Link>
-          <Link href="/terms-and-conditions" className="hover:text-[#249732] transition">
+          <Link
+            href="/terms-and-conditions"
+            className="hover:text-[#249732] transition"
+          >
             Terms & Conditions
           </Link>
           <Link href="/contact" className="hover:text-[#249732] transition">
             Contact Us
           </Link>
-
-
         </div>
 
         {/* 2️⃣ & 3️⃣ Categories (split into two columns) */}
@@ -84,22 +88,40 @@ const Footer = () => {
           {/* Left Categories */}
           <div className="flex flex-col gap-3">
             <h4 className="font-semibold text-white mb-2">Categories</h4>
-            <Link href="/category/real-estate-and-properties" className="hover:text-[#249732] transition">
+            <Link
+              href="/category/real-estate-and-properties"
+              className="hover:text-[#249732] transition"
+            >
               Real Estate
             </Link>
-            <Link href="/category/healthcare-services" className="hover:text-[#249732] transition">
+            <Link
+              href="/category/healthcare-services"
+              className="hover:text-[#249732] transition"
+            >
               Healthcare
             </Link>
-            <Link href="/category/travel-and-tourism-services" className="hover:text-[#249732] transition">
+            <Link
+              href="/category/travel-and-tourism-services"
+              className="hover:text-[#249732] transition"
+            >
               Travel & Tourism
             </Link>
-            <Link href="/category/hotels-and-resorts" className="hover:text-[#249732] transition">
+            <Link
+              href="/category/hotels-and-resorts"
+              className="hover:text-[#249732] transition"
+            >
               Hotels & Resorts
             </Link>
-            <Link href="/category/restaurants-and-cafes" className="hover:text-[#249732] transition">
+            <Link
+              href="/category/restaurants-and-cafes"
+              className="hover:text-[#249732] transition"
+            >
               Restaurants and Cafes
             </Link>
-            <Link href="/category/education-and-coaching" className="hover:text-[#249732] transition">
+            <Link
+              href="/category/education-and-coaching"
+              className="hover:text-[#249732] transition"
+            >
               Education & Coaching
             </Link>
           </div>
@@ -110,30 +132,27 @@ const Footer = () => {
               Categories
             </h4>{" "}
             {/* alignment fix */}
-
             <Link href="#" className="hover:text-[#249732] transition">
               Agriculture & Food
             </Link>
-
             <Link href="#" className="hover:text-[#249732] transition">
               Education & Learning
             </Link>
-
             <Link href="#" className="hover:text-[#249732] transition">
               Media & Entertainment
             </Link>
-
-            <Link href="/category/salons-spas-and-wellness" className="hover:text-[#249732] transition">
+            <Link
+              href="/category/salons-spas-and-wellness"
+              className="hover:text-[#249732] transition"
+            >
               Salons, Spas, & Wellness
             </Link>
-
             <Link href="#" className="hover:text-[#249732] transition">
               Technology & Innovation
             </Link>
             <Link href="#" className="hover:text-[#249732] transition">
               Transportation & Logistics
             </Link>
-
           </div>
         </div>
       </div>
@@ -142,8 +161,7 @@ const Footer = () => {
       <div className="bg-[#081d53] text-gray-300 text-sm py-4 px-4 md:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
           <span>
-            &copy; Copyright 2026 Odisha Biz. All Rights Reserved || Powered
-            By{" "}
+            &copy; Copyright 2026 Odisha Biz. All Rights Reserved || Powered By{" "}
             <strong>
               <a
                 href="#"
@@ -155,7 +173,7 @@ const Footer = () => {
               </a>
             </strong>
           </span>
-          <div className="flex gap-4 mt-2 md:mt-0">
+          {/* <div className="flex gap-4 mt-2 md:mt-0">
             <a
               href="https://www.facebook.com/"
               target="_blank"
@@ -184,7 +202,7 @@ const Footer = () => {
             >
               <FaLinkedin className="text-base" />
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
